@@ -19,7 +19,7 @@
   var actual_lat = 0.0;
   var actual_lon = 0.0;
   var accuracy = 0;
-  var dummy = 1;
+  var dummy = 0;
 
   
   function defaultLoad(){
