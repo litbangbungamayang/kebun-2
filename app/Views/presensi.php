@@ -22,13 +22,23 @@
             </div>
             <div class="col-lg-12">
                 <div class="row row-cards">
-                    <!-- Panel grafik -->
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
                         <div class="card">
-                        <div class="card-status-top bg-lime"></div>
-                        <div class="card-body">
-                            <h3 class="card-title" id='lblDateTime'></h3>
-                        </div>
+                            <div class="card-status-top bg-lime"></div>
+                            <div class="card-body">
+                                <h3 class="card-title" id='lblDateTime'></h3>
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-title">Jam masuk</h4>
+                                    <div class="text-muted" id="lblCekIn"></div>
+                                </div>
+                                <div class="alert alert-info" role="alert">
+                                    <h4 class="alert-title">Jam pulang</h4>
+                                    <div class="text-muted" id="lblCekOut"></div>
+                                </div>
+                                <div class="col text-center">
+                                    <button id="btnSubmitPresensi" onClick="submitPresensi();" class="btn btn-pill btn-primary">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
