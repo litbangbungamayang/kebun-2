@@ -104,7 +104,7 @@
 <script>
   function refreshData(){
     var currentDate = new Date();
-    lblDateTime.text(currentDate.getDate() + "-" + currentDate.getMonth() + 1 + "-" + currentDate.getFullYear() + "  " + currentDate.getHours() + ":" + (currentDate.getMinutes()<10 ? '0' : '') + currentDate.getMinutes() + ":" + (currentDate.getSeconds()<10 ? '0' : '') + currentDate.getSeconds());
+    lblDateTime.text((currentDate.getDate()<10 ? '0' : '') + currentDate.getDate() + "-" + currentDate.getMonth() + 1 + "-" + currentDate.getFullYear() + "  " + currentDate.getHours() + ":" + (currentDate.getMinutes()<10 ? '0' : '') + currentDate.getMinutes() + ":" + (currentDate.getSeconds()<10 ? '0' : '') + currentDate.getSeconds());
   }
 </script>
 <script>
