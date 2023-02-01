@@ -36,6 +36,7 @@ $routes->get('/', 'Home::index');
 $routes->get('login', 'C_login::index');
 $routes->post('login_process', 'C_login::logging_in');
 $routes->get('login_process', 'C_login::logging_in');
+$routes->get('upload', 'C_login::tes_upload');
 $routes->get('presensi', 'C_user::presensi');
 $routes->add('detail/buma', 'C_detail::onfarm/buma');
 $routes->add('detail/cima', 'C_detail::onfarm/cima');

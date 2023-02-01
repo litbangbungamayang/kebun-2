@@ -62,5 +62,8 @@ class Autoload extends AutoloadConfig
 	 *
 	 * @var array<string, string>
 	 */
-	public $classmap = [];
+	public $classmap = [
+		'GoogleDriveAPI' => '/public/google-api-php-client-[2.13.0]/vendor/autoload.php',
+		'GoogleDriveSvc' => '/public/google-api-php-client-services-main/autoload.php'
+	];
 }

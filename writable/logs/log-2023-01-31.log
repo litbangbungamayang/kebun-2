@@ -119,3 +119,216 @@ CRITICAL - 2023-01-31 09:43:53 --> Invalid file: Scripts/script_dashboard.php
 #9 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #10 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
 #11 {main}
+CRITICAL - 2023-01-31 11:01:35 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:01:49 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/Home.php(12): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\Home->index()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:01:49 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/Home.php(12): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\Home->index()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:01:57 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/Home.php(12): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\Home->index()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:02:14 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/Home.php(12): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\Home->index()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:03:12 --> Call to a member function get() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:04:05 --> Call to a member function has() on null
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:06:26 --> Call to undefined method CodeIgniter\View\View::session()
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:06:39 --> Call to undefined method CodeIgniter\View\View::session()
+#0 /opt/lampp/htdocs/kantor/system/View/View.php(220): include()
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#3 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-01-31 11:07:42 --> Use of undefined constant nm_unit - assumed 'nm_unit' (this will throw an Error in a future version of PHP)
+#0 /opt/lampp/htdocs/kantor/app/Views/dashboard.php(18): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', '/opt/lampp/htdo...', 18, Array)
+#1 /opt/lampp/htdocs/kantor/system/View/View.php(220): include('/opt/lampp/htdo...')
+#2 /opt/lampp/htdocs/kantor/system/View/View.php(222): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /opt/lampp/htdocs/kantor/system/Common.php(1217): CodeIgniter\View\View->render('dashboard', Array, true)
+#4 /opt/lampp/htdocs/kantor/app/Controllers/C_login.php(41): view('dashboard')
+#5 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_login->logging_in()
+#6 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_login))
+#7 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-01-31 17:21:58 --> Call to undefined method App\Controllers\C_user::session()
+#0 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-01-31 17:22:05 --> Call to undefined method App\Controllers\C_user::session()
+#0 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2023-01-31 17:29:23 --> Call to undefined function App\Models\getUnit()
+#0 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(18): App\Models\M_User->cekLokasi(Array)
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-01-31 17:29:29 --> Call to undefined function App\Models\getUnit()
+#0 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(18): App\Models\M_User->cekLokasi(Array)
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-01-31 18:05:58 --> Class 'App\Models\DateTime' not found
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(71): App\Models\M_User->submitPresensi()
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 18:06:03 --> Class 'App\Models\DateTime' not found
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(71): App\Models\M_User->submitPresensi()
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:05:56 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:06:22 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:06:30 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:11:19 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:11:23 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:11:24 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:11:27 --> A non-numeric value encountered
+#0 /opt/lampp/htdocs/kantor/app/Models/M_User.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric v...', '/opt/lampp/htdo...', 78, Array)
+#1 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(16): App\Models\M_User->cekLokasi(Array)
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#4 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2023-01-31 22:50:49 --> Cannot use object of type CodeIgniter\Database\MySQLi\Result as array
+#0 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(17): App\Models\M_User->cekLokasi(Array)
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2023-01-31 22:50:54 --> Cannot use object of type CodeIgniter\Database\MySQLi\Result as array
+#0 /opt/lampp/htdocs/kantor/app/Controllers/C_user.php(17): App\Models\M_User->cekLokasi(Array)
+#1 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(936): App\Controllers\C_user->cekLokasi()
+#2 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(432): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\C_user))
+#3 /opt/lampp/htdocs/kantor/system/CodeIgniter.php(333): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /opt/lampp/htdocs/kantor/index.php(44): CodeIgniter\CodeIgniter->run()
+#5 {main}

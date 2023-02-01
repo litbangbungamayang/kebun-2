@@ -46,4 +46,8 @@ class C_login extends BaseController
 			}
 		}
 	}
+
+	public function tes_upload(){
+		return view('upload');
+	}
 }
