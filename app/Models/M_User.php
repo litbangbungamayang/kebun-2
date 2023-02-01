@@ -60,6 +60,9 @@ class M_User extends Model{
   }
 
   public function cekLokasi($posisi){
+    $id_pegawai = session('id_pegawai');
+    $tgl_absen = date('Y-m-d');
+    $presensi_result = $this->cekPresensi(array('id_pegawai'=>$id_pegawai, 'tgl_absen'=>$tgl_absen));
     $distance = 0;
     $lat1 = $posisi['lat'];
     $lon1 = $posisi['lon'];
@@ -81,13 +84,20 @@ class M_User extends Model{
     } else {
         $distance = $miles;
     }
-    if ($distance > 1 && $dl == 'false'){
-      return array('status'=>'fail', 'msg'=>'Anda belum bisa submit presensi, lokasi Anda > 1 km dari lokasi kerja. (Jarak aktual = '.round($distance,2).' km)');
-    } else {
-      $response = $this->submitPresensi($posisi);
-      if ($response){
-        return array('status'=>'success', 'msg'=>'Anda berhasil melakukan presensi.');
+    if($presensi_result === NULL){
+      if ($distance > 1 && $dl == 'false'){
+        return array('status'=>'fail', 'msg'=>'Anda belum bisa submit presensi, lokasi Anda > 1 km dari lokasi kerja. (Jarak aktual = '.round($distance,2).' km)');
+      } else {
+        $response = $this->submitPresensi($posisi);
+        if ($response){
+          return array('status'=>'success', 'msg'=>'Anda berhasil melakukan presensi.');
+        }
       }
+    } else {
+        $response = $this->submitPresensi($posisi);
+        if ($response){
+          return array('status'=>'success', 'msg'=>'Anda berhasil melakukan presensi.');
+        }
     }
   }
 
