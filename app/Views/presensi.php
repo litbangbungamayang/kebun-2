@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h3 class="card-title" id='lblDateTime'></h3>
                                 <div class="alert alert-success" role="alert">
-                                    <h4 class="alert-title">Jam masuk</h4>
+                                    <h4 class="alert-title">Jam datang</h4>
                                     <div class="text-muted" id="lblCekIn"></div>
                                 </div>
                                 <div class="alert alert-info" role="alert">
