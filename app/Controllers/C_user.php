@@ -14,7 +14,8 @@ class C_user extends BaseController
 		$lat = $this->request->getGet('lat');
 		$lon = $this->request->getGet('lon');
 		$acc = $this->request->getGet('acc');
-		return json_encode($this->m_user->cekLokasi(array('lat'=>$lat, 'lon'=>$lon, 'kdunit'=>session('kd_unit'), 'acc'=>$acc)));
+		$dl = $this->request->getGet('dl');
+		return json_encode($this->m_user->cekLokasi(array('lat'=>$lat, 'lon'=>$lon, 'kdunit'=>session('kd_unit'), 'acc'=>$acc, 'dl'=>$dl)));
 	}
 
 	public function cekPresensi(){

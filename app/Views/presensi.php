@@ -35,6 +35,12 @@
                                     <h4 class="alert-title">Jam pulang</h4>
                                     <div class="text-muted" id="lblCekOut"></div>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="chkDinas">
+                                        <span class="form-check-label">Dinas luar</span>
+                                    </label>
+                                </div>
                                 <div class="col text-center">
                                     <button id="btnSubmitPresensi" onClick="submitPresensi();" class="btn btn-pill btn-primary">Submit</button>
                                 </div>

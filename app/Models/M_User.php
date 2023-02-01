@@ -40,10 +40,11 @@ class M_User extends Model{
     $id_pegawai = session('id_pegawai');
     $tgl_absen = date('Y-m-d');
     $jam_skrg = date('H:i:s');
+    $dl = $posisi['dl'];
     $presensi_result = $this->cekPresensi(array('id_pegawai'=>$id_pegawai, 'tgl_absen'=>$tgl_absen));
     if ($presensi_result === NULL){
-      $sql = 'insert into tbl_kantor_presensi(id_pegawai, tgl_presensi, cek_in, actual_lat_in, actual_lon_in, gps_accuracy_in) values(?,?,?,?,?,?)';
-      return $this->db->query($sql, [$id_pegawai, $tgl_absen, $jam_skrg, $posisi['lat'], $posisi['lon'], $posisi['acc']]);
+      $sql = 'insert into tbl_kantor_presensi(id_pegawai, tgl_presensi, cek_in, actual_lat_in, actual_lon_in, gps_accuracy_in, status_dl) values(?,?,?,?,?,?,?)';
+      return $this->db->query($sql, [$id_pegawai, $tgl_absen, $jam_skrg, $posisi['lat'], $posisi['lon'], $posisi['acc'], $dl]);
     } else {
       if($presensi_result !== NULL && $presensi_result['cek_in'] !== NULL && $presensi_result['cek_out'] === NULL){
         $sql = 'update tbl_kantor_presensi set cek_out = ?, actual_lat_out = ?, actual_lon_out = ?, gps_accuracy_out = ? 
@@ -62,6 +63,7 @@ class M_User extends Model{
     $distance = 0;
     $lat1 = $posisi['lat'];
     $lon1 = $posisi['lon'];
+    $dl = $posisi['dl'];
     $dataUnit = $this->getUnit($posisi['kdunit']);
     $lat2 = $dataUnit['latitude'];
     $lon2 = $dataUnit['longitude'];
@@ -79,12 +81,12 @@ class M_User extends Model{
     } else {
         $distance = $miles;
     }
-    if ($distance > 1){
+    if ($distance > 1 && $dl == 'false'){
       return array('status'=>'fail', 'msg'=>'Anda belum bisa submit presensi, lokasi Anda > 1 km dari lokasi kerja. (Jarak aktual = '.round($distance,2).' km)');
     } else {
       $response = $this->submitPresensi($posisi);
       if ($response){
-        return array('status'=>'success', 'msg'=>'Anda berhasil submit.');
+        return array('status'=>'success', 'msg'=>'Anda berhasil melakukan presensi.');
       }
     }
   }

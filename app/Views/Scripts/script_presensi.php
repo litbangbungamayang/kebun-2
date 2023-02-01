@@ -9,12 +9,13 @@
   const formatOptions_int = {maximumFractionDigits: 0, minimumFractionDigits: 0};
   const formatting_int = new Intl.NumberFormat('id-UK', formatOptions_int);
 
-  const kantor_lat = -5.3706477;
-  const kantor_lon = 105.2280522;
+  const kantor_lat = -5.849541; //-5.3706477;
+  const kantor_lon = 105.6918999; //105.2280522;
 
   var lblDateTime = $("#lblDateTime");
   var lblCekIn = $("#lblCekIn");
   var lblCekOut = $("#lblCekOut");
+  var chkDinas = $("#chkDinas");
   var btnSubmitPresensi = $("#btnSubmitPresensi");
   var actual_lat = 0.0;
   var actual_lon = 0.0;
@@ -51,11 +52,12 @@
   function fixedPosition(position){
     actual_lat = position.coords.latitude;
     actual_lon = position.coords.longitude;
+    accuracy = position.coords.accuracy;
     if (dummy == 1){
       actual_lat = kantor_lat;
       actual_lon = kantor_lon;
+      accuracy = 10;
     }
-    accuracy = position.coords.accuracy;
   }
 
   function cekPresensi(){
@@ -73,8 +75,9 @@
 
   function submitPresensi(){
     getLocation();
+    var dinas = chkDinas.prop('checked');
     if (accuracy < 1000 && accuracy >= 0){
-      var url = js_base_url + "C_user/cekLokasi?lat=" + actual_lat + "&lon=" + actual_lon + "&acc=" + accuracy;
+      var url = js_base_url + "C_user/cekLokasi?lat=" + actual_lat + "&lon=" + actual_lon + "&acc=" + accuracy + "&dl=" + dinas;
       $.getJSON(url, function(response){
         console.log(response);
         alert(response['msg']);
@@ -104,7 +107,7 @@
 <script>
   function refreshData(){
     var currentDate = new Date();
-    lblDateTime.text((currentDate.getDate()<10 ? '0' : '') + currentDate.getDate() + "-" + currentDate.getMonth() + 1 + "-" + currentDate.getFullYear() + "  " + currentDate.getHours() + ":" + (currentDate.getMinutes()<10 ? '0' : '') + currentDate.getMinutes() + ":" + (currentDate.getSeconds()<10 ? '0' : '') + currentDate.getSeconds());
+    lblDateTime.text((currentDate.getDate()<10 ? '0' : '') + currentDate.getDate() + "-" + (currentDate.getMonth()<10 ? '0' : '') + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + "  " + (currentDate.getHours()<10 ? '0' : '') + currentDate.getHours() + ":" + (currentDate.getMinutes()<10 ? '0' : '') + currentDate.getMinutes() + ":" + (currentDate.getSeconds()<10 ? '0' : '') + currentDate.getSeconds());
   }
 </script>
 <script>
