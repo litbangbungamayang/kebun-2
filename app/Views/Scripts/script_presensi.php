@@ -9,8 +9,8 @@
   const formatOptions_int = {maximumFractionDigits: 0, minimumFractionDigits: 0};
   const formatting_int = new Intl.NumberFormat('id-UK', formatOptions_int);
 
-  const kantor_lat = -5.849541; //-5.3706477;
-  const kantor_lon = 105.6918999; //105.2280522;
+  const kantor_lat = -5.3706477; //-5.3706477;
+  const kantor_lon = 105.2280522; //105.2280522;
 
   var lblDateTime = $("#lblDateTime");
   var lblCekIn = $("#lblCekIn");
@@ -20,7 +20,7 @@
   var actual_lat = 0.0;
   var actual_lon = 0.0;
   var accuracy = 0;
-  var dummy = 0;
+  var dummy = 1;
 
   
   function defaultLoad(){
@@ -81,6 +81,7 @@
       $.getJSON(url, function(response){
         console.log(response);
         alert(response['msg']);
+        chkDinas.prop('checked', false);
         cekPresensi();
       })
     } else {
