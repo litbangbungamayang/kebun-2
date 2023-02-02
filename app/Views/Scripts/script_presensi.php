@@ -73,6 +73,16 @@
     })
   }
 
+  function konfirmasiPresensi(){
+    if (lblCekIn.text() == ''){
+      if (confirm('Submit presensi kedatangan?')){submitPresensi()};
+    } else {
+      if (lblCekIn.text() != '' && lblCekOut.text() == '' ){
+        if (confirm("Submit presensi pulang?")){submitPresensi()};
+      }
+    }
+  }
+
   function submitPresensi(){
     getLocation();
     var dinas = chkDinas.prop('checked');

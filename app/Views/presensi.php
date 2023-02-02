@@ -42,7 +42,7 @@
                                     </label>
                                 </div>
                                 <div class="col text-center">
-                                    <button id="btnSubmitPresensi" onClick="submitPresensi();" class="btn btn-pill btn-primary">Submit</button>
+                                    <button id="btnSubmitPresensi" onClick="konfirmasiPresensi();" class="btn btn-pill btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
