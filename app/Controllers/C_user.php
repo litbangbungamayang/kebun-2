@@ -6,8 +6,18 @@ use Config\Services;
 
 class C_user extends BaseController
 {
+	public function cekRole($request){
+		return $this->m_user->cekRole(array($request));
+	}
+
 	public function presensi(){
-		return view('presensi');
+		//module_id = 1
+		if ($this->session->has('username') == true){
+			return view('presensi');
+		} else {
+			return redirect('login');
+		}
+		
 	}
 
 	public function cekLokasi(){

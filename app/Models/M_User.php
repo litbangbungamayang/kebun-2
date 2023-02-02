@@ -16,6 +16,12 @@ class M_User extends Model{
     return $posisi['kdunit'];
   }
 
+  public function cekRole($request){
+    $username = session('username');
+    $id_module = $request('id_module');
+    
+  }
+
   public function verify($request){
     $uname = $request->getVar('uname');
 		$pwd = md5($request->getVar('pwd'));
