@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="navbar-nav pt-lg-3">
         <li class="nav-item">
-          <a class="nav-link" href="" >
+          <a class="nav-link" href="<? echo site_url('/profil'); ?>" >
             <span class="nav-link-title">
               <? echo session('nm_pegawai'); ?>
             </span>

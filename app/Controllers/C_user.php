@@ -17,7 +17,14 @@ class C_user extends BaseController
 		} else {
 			return redirect('login');
 		}
-		
+	}
+
+	public function profil(){
+		if($this->session->has('username') == true){
+			return view('profil');
+		} else {
+			return redirect('login');
+		}
 	}
 
 	public function cekLokasi(){
