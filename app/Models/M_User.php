@@ -92,7 +92,7 @@ class M_User extends Model{
     }
     if($presensi_result === NULL){
       if ($distance > 5 && $dl == 'false'){
-        return array('status'=>'fail', 'msg'=>'Anda belum bisa submit presensi, lokasi Anda > 1 km dari lokasi kerja. (Jarak aktual = '.round($distance,2).' km)');
+        return array('status'=>'fail', 'msg'=>'Anda belum bisa submit presensi, lokasi Anda > 1 km dari lokasi kerja. (Jarak aktual = '.round($distance,2).' km); Lat='.$lat1);
       } else {
         $response = $this->submitPresensi($posisi);
         if ($response){

@@ -23,7 +23,7 @@
               <div class="card">
                 <div class="card-body">
                   <p><h3><? echo session('nm_pegawai');?></h3></p>
-                  <p><? echo session('nm_jabatan')." ".ucwords(strtolower(session('nm_sub_divisi')));?></p>
+                  <p><? echo session('nm_jabatan')." ".ucwords(strtolower(session('nm_sub_divisi')))." - ".ucwords(session('nm_unit'));?></p>
                 </div>
               </div>
             </div>

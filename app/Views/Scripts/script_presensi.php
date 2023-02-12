@@ -20,7 +20,7 @@
   var actual_lat = 0.0;
   var actual_lon = 0.0;
   var accuracy = 0;
-  var dummy = 0;
+  var dummy = 1;
 
   
   function defaultLoad(){
@@ -93,6 +93,7 @@
         alert(response['msg']);
         chkDinas.prop('checked', false);
         cekPresensi();
+        return false;
       })
     } else {
       alert("Harap cek kembali akurasi GPS Anda. Nilai akurasi > 1000 meter tidak dapat melakukan submit presensi. (Aktual = " + formatting_int.format(accuracy || 0) + " meter).");
