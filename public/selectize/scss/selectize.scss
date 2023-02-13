@@ -1,20 +1,3 @@
-/**
- * selectize.css (v0.13.3)
- * Copyright (c) 2013–2015 Brian Reavis & contributors
- * Copyright (c) 2020 Selectize Team & contributors
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
- * file except in compliance with the License. You may obtain a copy of the License at:
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- * ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- *
- * @author Brian Reavis <brian@thirdroute.com>
- * @author Ris Adams <selectize@risadams.com>
- */
 @use "sass:math";
 
 // base styles
@@ -61,7 +44,7 @@ $select-border: 1px solid $select-color-border !default;
 $select-dropdown-border: 1px solid $select-color-dropdown-border !default;
 $select-border-radius: 3px !default;
 
-$select-width-item-border: 0 !default;
+$select-width-item-border: 0px !default;
 $select-max-height-dropdown: 200px !default;
 
 $select-padding-x: 8px !default;
@@ -90,10 +73,12 @@ $select-spinner-border-color: $select-color-border;
   background-repeat: repeat-x;
 }
 
-@import "../plugins/drag_drop/plugin.scss";
-@import "../plugins/dropdown_header/plugin.scss";
-@import "../plugins/optgroup_columns/plugin.scss";
-@import "../plugins/remove_button/plugin.scss";
+@import "plugins/drag_drop.scss";
+@import "plugins/dropdown_header.scss";
+@import "plugins/optgroup_columns.scss";
+@import "plugins/remove_button.scss";
+@import "plugins/clear_button.scss";
+@import "plugins/auto_position.scss";
 
 .#{$selectize}-control {
   position: relative;
@@ -121,7 +106,7 @@ $select-spinner-border-color: $select-color-border;
   padding: $select-padding-y $select-padding-x;
   display: inline-block;
   width: 100%;
-  overflow: hidden;
+  // overflow: hidden;
   position: relative;
   z-index: 1;
   box-sizing: border-box;
@@ -285,14 +270,24 @@ $select-spinner-border-color: $select-color-border;
     cursor: default;
   }
   .active {
-    background-color: $select-color-dropdown-item-active;
-    color: $select-color-dropdown-item-active-text;
+    background-color: $select-color-item-active;
+    color: $select-color-item-active-text;
     &.create {
       color: $select-color-dropdown-item-create-active-text;
     }
   }
+
+  .selected {
+    background-color: $select-color-item-active;
+    color: $select-color-item-active-text;
+  }
   .create {
     color: $select-color-dropdown-item-create-text;
+  }
+
+  .active:not(.selected) {
+    background: $select-color-dropdown-item-active;
+    color: $select-color-dropdown-item-active-text;
   }
 }
 
@@ -341,11 +336,11 @@ $select-spinner-border-color: $select-color-border;
     cursor: pointer;
   }
   &.input-active,
-  &.input-active input {
+  &.input-active input:not(:read-only) {
     cursor: text;
   }
 
-  &:after {
+  &:not(.no-arrow):after {
     content: " ";
     display: block;
     position: absolute;
@@ -358,7 +353,7 @@ $select-spinner-border-color: $select-color-border;
     border-width: $select-arrow-size $select-arrow-size 0 $select-arrow-size;
     border-color: $select-arrow-color transparent transparent transparent;
   }
-  &.dropdown-active:after {
+  &:not(.no-arrow).dropdown-active:after {
     margin-top: $select-arrow-size * -0.8;
     border-width: 0 $select-arrow-size $select-arrow-size $select-arrow-size;
     border-color: transparent transparent $select-arrow-color transparent;

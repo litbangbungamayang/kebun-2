@@ -1,6 +1,6 @@
-@import "../../node_modules/bootstrap4/scss/functions";
-@import "../../node_modules/bootstrap4/scss/variables";
-@import "../../node_modules/bootstrap4/scss/mixins";
+@import "lib/bootstrap4/functions";
+@import "lib/bootstrap4/variables";
+@import "lib/bootstrap4/mixins";
 
 $enable-shadows: true !default;
 $select-font-family: inherit !default;
@@ -29,7 +29,7 @@ $select-color-dropdown: $dropdown-bg !default;
 $select-color-dropdown-border-top: mix(
   $input-border-color,
   $input-bg,
-  0.8
+  80%
 ) !default;
 $select-color-dropdown-item-active: $dropdown-link-hover-bg !default;
 $select-color-dropdown-item-active-text: $dropdown-link-hover-color !default;
@@ -167,7 +167,33 @@ $select-arrow-offset: calc(#{$select-padding-x} + 5px) !default;
   border-radius: 0;
 }
 
-.input-group .#{$selectize}-input {
-  overflow: unset;
-  border-radius: 0 $select-border-radius $select-border-radius 0;
+.input-group .#{$selectize}-control:not(:last-child) {
+  .#{$selectize}-input{
+    overflow: unset;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.input-group .#{$selectize}-control:not(:first-child) {
+  .#{$selectize}-input{
+    overflow: unset;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+// .input-group .#{$selectize}-input {
+//   overflow: unset;
+//   border-radius: 0 $select-border-radius $select-border-radius 0;
+// }
+
+.#{selectize}-dropdown.plugin-auto_position.#{$selectize}-position-top {
+  border-top: $select-border!important;
+  border-bottom: $select-border!important;
+  border-radius: $select-border-radius!important;
+}
+.#{selectize}-control.plugin-auto_position .#{selectize}-input.#{$selectize}-position-top.dropdown-active {
+  border-radius: $select-border-radius!important;
+  border-top: $select-border!important;
 }
