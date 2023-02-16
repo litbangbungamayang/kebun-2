@@ -39,6 +39,7 @@ $routes->get('login_process', 'C_login::logging_in');
 $routes->get('upload', 'C_login::tes_upload');
 $routes->get('surat_masuk', 'C_user::inbox');
 $routes->get('upload_surat', 'C_user::upload_mail');
+$routes->post('new_mail', 'C_mail::new_mail');
 $routes->get('new_mail', 'C_mail::new_mail');
 $routes->get('presensi', 'C_user::presensi');
 $routes->get('profil', 'C_user::profil');

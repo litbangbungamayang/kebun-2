@@ -10,10 +10,14 @@
   var $cbxAsalDokumen, cbxAsalDokumen;
   var $cbxSubAsalDokumen, cbxSubAsalDokumen;
   var $cbxJenisDokumen, cbxJenisDokumen;
+  var $cbxTujuanDokumen, cbxTujuanDokumen;
+  var dpTglDokumen = $("#tgl_dokumen");
   
   function defaultLoad(){
     
   }
+
+  
 
   $cbxJenisDokumen = $("#jns_dokumen").selectize({
     valueField: 'id',
@@ -30,12 +34,44 @@
   })
   cbxJenisDokumen = $cbxJenisDokumen[0].selectize;
 
+
+  $cbxSubAsalDokumen = $("#sub_asal_dokumen").selectize({
+    valueField: "id_sub_asal",
+    labelField: "nm_sub_asal_dokumen",
+    sortField: "id_sub_asal",
+    searchField: "nm_sub_asal_dokumen",
+    maxItems: 1,
+    create: false,
+    placeholder: "Sub bagian/instansi"
+  })
+  cbxSubAsalDokumen = $cbxSubAsalDokumen[0].selectize;
+
+  $.ajax({
+    url: js_base_url + 'C_mail/getTujuanDokumen',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+      //console.log(response);
+      $cbxTujuanDokumen = $("#tujuan_dokumen").selectize({
+        valueField: 'id_pegawai',
+        labelField: 'opsi',
+        sortField: 'level_jabatan',
+        searchField: 'opsi',
+        maxItems: 1,
+        create: false,
+        placeholder: 'Pilih tujuan surat..',
+        options: response
+      })
+      cbxTujuanDokumen = $cbxTujuanDokumen[0].selectize;
+    }
+  })
+
   $.ajax({
     url: js_base_url + "C_mail/getAsalDokumen",
     type: 'GET',
     dataType: 'json',
     success: function(response){
-      console.log(response);
+      //console.log(response);
       var isian = response;
       $cbxAsalDokumen = $("#asal_dokumen").selectize({
         valueField: "id_asal_dokumen",
@@ -43,11 +79,30 @@
         sortField: "id_asal_dokumen",
         searchField: "nm_asal_dokumen",
         maxItems: 1,
-        create: true,
+        create: false,
         placeholder: "Pilih asal dokumen..",
-        options: isian
+        options: isian,
+        onChange: function(value){
+          cbxSubAsalDokumen.disable();
+          cbxSubAsalDokumen.clear();
+          cbxSubAsalDokumen.clearOptions();
+          $.ajax({
+            url: js_base_url + 'C_mail/getSubAsalDokumen',
+            type: 'GET',
+            dataType: 'json',
+            data: 'id_asal=' + value,
+            success: function(response){
+              //console.log(response);
+              cbxSubAsalDokumen.enable();
+              cbxSubAsalDokumen.load(function (callback){
+                callback(response);
+              })
+            }
+          })
+        }
       })
       cbxAsalDokumen = $cbxAsalDokumen[0].selectize;
+      cbxSubAsalDokumen.disable();
     }
   })
 
