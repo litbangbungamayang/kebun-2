@@ -50,4 +50,9 @@ class C_login extends BaseController
 	public function tes_upload(){
 		return view('upload');
 	}
+
+	public function logout(){
+		session_destroy();
+		return view('login');
+	}
 }

@@ -126,10 +126,9 @@ class M_Surat extends Model{
       var_dump($msg_file);
     } else {
       $this->db->transCommit();
+      $data = ['msg'=>'Entri sukses'];
+      return view('upload_mail', $data);
     }
-    
-    return view('upload_mail');
-
     /*----------------------------------------------------*/
   }
 

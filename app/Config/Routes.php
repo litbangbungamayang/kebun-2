@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('login', 'C_login::index');
+$routes->get('logout', 'C_login::logout');
 $routes->post('login_process', 'C_login::logging_in');
 $routes->get('login_process', 'C_login::logging_in');
 $routes->get('upload', 'C_login::tes_upload');
