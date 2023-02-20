@@ -41,7 +41,8 @@ class C_login extends BaseController
 					return view('login');
 				} else {
 					$this->session->set($userdata);
-					return view('dashboard');
+					//return view('dashboard');
+					return redirect()->route('home');
 				}
 			}
 		}

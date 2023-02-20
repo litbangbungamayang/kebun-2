@@ -86,7 +86,7 @@
   function submitPresensi(){
     getLocation();
     var dinas = chkDinas.prop('checked');
-    if (accuracy < 1000 && accuracy >= 0){
+    if (lblCekIn.text() != '' && lblCekOut.text() == '' ){
       var url = js_base_url + "C_user/cekLokasi?lat=" + actual_lat + "&lon=" + actual_lon + "&acc=" + accuracy + "&dl=" + dinas;
       $.getJSON(url, function(response){
         console.log(response);
@@ -96,7 +96,7 @@
         return false;
       })
     } else {
-      if (dinas){
+      if (accuracy < 1000 && accuracy >= 0){
         var url = js_base_url + "C_user/cekLokasi?lat=" + actual_lat + "&lon=" + actual_lon + "&acc=" + accuracy + "&dl=" + dinas;
         $.getJSON(url, function(response){
           console.log(response);
@@ -106,9 +106,20 @@
           return false;
         })
       } else {
-        alert("Harap cek kembali akurasi GPS Anda. Nilai akurasi > 1000 meter tidak dapat melakukan submit presensi. (Aktual = " + formatting_int.format(accuracy || 0) + " meter).");
+        if (dinas){
+          var url = js_base_url + "C_user/cekLokasi?lat=" + actual_lat + "&lon=" + actual_lon + "&acc=" + accuracy + "&dl=" + dinas;
+          $.getJSON(url, function(response){
+            console.log(response);
+            alert(response['msg']);
+            chkDinas.prop('checked', false);
+            cekPresensi();
+            return false;
+          })
+        } else {
+          alert("Harap cek kembali akurasi GPS Anda. Nilai akurasi > 1000 meter tidak dapat melakukan submit presensi. (Aktual = " + formatting_int.format(accuracy || 0) + " meter).");
+        }
+        
       }
-      
     }
   }
 
