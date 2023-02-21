@@ -40,6 +40,7 @@
                                         <input class="form-check-input" type="checkbox" id="chkDinas">
                                         <span class="form-check-label">Dinas luar</span>
                                     </label>
+                                    <div class="text-muted" id="lblAkurasi">Akurasi GPS Anda : N/A</div>
                                 </div>
                                 <div class="col text-center">
                                     <button id="btnSubmitPresensi" onClick="konfirmasiPresensi();" class="btn btn-pill btn-primary">Submit</button>

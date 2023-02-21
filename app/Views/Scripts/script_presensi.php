@@ -16,6 +16,7 @@
   var lblCekIn = $("#lblCekIn");
   var lblCekOut = $("#lblCekOut");
   var chkDinas = $("#chkDinas");
+  var lblAkurasi = $("#lblAkurasi");
   var btnSubmitPresensi = $("#btnSubmitPresensi");
   var actual_lat = 0.0;
   var actual_lon = 0.0;
@@ -143,6 +144,8 @@
   function refreshData(){
     var currentDate = new Date();
     lblDateTime.text((currentDate.getDate()<10 ? '0' : '') + currentDate.getDate() + "-" + (currentDate.getMonth()<10 ? '0' : '') + (currentDate.getMonth() + 1) + "-" + currentDate.getFullYear() + "  " + (currentDate.getHours()<10 ? '0' : '') + currentDate.getHours() + ":" + (currentDate.getMinutes()<10 ? '0' : '') + currentDate.getMinutes() + ":" + (currentDate.getSeconds()<10 ? '0' : '') + currentDate.getSeconds());
+    getLocation();
+    lblAkurasi.text('Akurasi GPS Anda : ' + formatting_int.format(accuracy || 0) + ' meter');
   }
 </script>
 <script>
