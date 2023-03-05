@@ -132,16 +132,26 @@ class M_Surat extends Model{
 
   public function cek_inbox(){
     $id_pegawai = session('id_pegawai');
-    $sql = "select * from tbl_kantor_surat_masuk smasuk 
+    $sql = "select * from tbl_kantor_dokumen_masuk smasuk 
       join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
       join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
       where smasuk.tujuan_dokumen = ? order by smasuk.status_dokumen asc, smasuk.tgl_diterima asc";
     return $this->db->query($sql, array($id_pegawai))->getResultArray();
   }
 
+  public function cek_disposisi(){
+    $id_pegawai = session('id_pegawai');
+    $sql = "select * from tbl_kantor_disposisi dispo
+      join tbl_kantor_dokumen_masuk dmasuk on dmasuk.id_surat = dispo.id_surat
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = dmasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen
+      where id_pegawai_tujuan = ? order by status_disposisi, tgl_kirim_disposisi";
+    return ($this->db->query($sql, array($id_pegawai))->getResultArray());
+  }
+
   public function cek_unread(){
     $id_pegawai = session('id_pegawai');
-    $sql = "select * from tbl_kantor_surat_masuk smasuk 
+    $sql = "select * from tbl_kantor_dokumen_masuk smasuk 
       join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
       join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
       where smasuk.tujuan_dokumen = ? and smasuk.status_dokumen = 1";

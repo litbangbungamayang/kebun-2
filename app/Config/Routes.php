@@ -45,6 +45,7 @@ $routes->post('new_mail', 'C_mail::new_mail');
 $routes->get('new_mail', 'C_mail::new_mail');
 $routes->get('cek_inbox', 'C_mail::cek_inbox');
 $routes->get('cek_inbox/jml', 'C_mail::cek_jml_inbox');
+$routes->get('cek_disposisi', 'C_mail::cek_disposisi');
 $routes->get('presensi', 'C_user::presensi');
 $routes->get('profil', 'C_user::profil');
 $routes->add('detail/buma', 'C_detail::onfarm/buma');

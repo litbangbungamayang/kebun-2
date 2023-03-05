@@ -6,27 +6,37 @@
   const formatOptions = {maximumFractionDigits: 2, minimumFractionDigits: 2};
   const formatting = new Intl.NumberFormat('id-UK', formatOptions);
 
+  var data_dokumen = '';
+  var data_disposisi = '';
+
+
+  
+
   var tbl_inbox = $("#tbl_inbox").DataTable({
     'select' : 'single',
+    /*
     'ajax' : {
       'url': js_base_url + 'cek_inbox',
       'dataSrc' : ''
     },
+    */
+    'data': '',
     columns : [
-      /*
-      {
-        data: "no",
-        render: function(data, type, row, meta){
-          return "<center>" + (meta.row + 1)  + "</center>";
-        }
-      },
-      */
       {
         data: "jenis_dokumen",
         render: function(data, type, row, meta){
-          txt_output = "";
+          txt_output = '';
+          jenis_dokumen = ''
+          //--------------- DISPOSISI
+          if (row['id_disposisi'] != null){
+            jenis_dokumen = 'DISPOSISI';
+          } else {
+            jenis_dokumen = data;
+          }
+          //-------------------------
+          
           if(row['status_dokumen'] == '1'){
-            txt_output = "<b>" + data + "</b>";
+            txt_output = "<b>" + jenis_dokumen + "</b>";
           } else {
             txt_output = data;
           }
@@ -37,7 +47,7 @@
       {
         data: "perihal_dokumen",
         render: function(data, type, row, meta){
-          return "<b>" + data + "</b><br><span>" + "Dari : " + row['nm_sub_asal_dokumen'] + "<hr hr class='mt-1 mb-1'>" + "Nomor : " + row['nomor_dokumen'] + "</span>";
+          return "<b>" + data + "</b><br><br><span>" + "Dari : " + row['nm_sub_asal_dokumen'] + "<hr hr class='mt-1 mb-1'>" + "Nomor : " + row['nomor_dokumen'] + "</span>";
         }
       },
       {
@@ -60,21 +70,48 @@
         }
       },
       {
-        data: "tgl_diterima"
+        data: "tgl_diterima",
+        render: function(data, type, row, meta){
+          return data;
+        }
       }
     ],
     'ordering' : false
   });
-  
 
   tbl_inbox.on('select', function(e, dt, type, indexes){
     if (type == 'row'){
-      var data = tbl_inbox.rows(indexes).data()[0]['id_surat'];
+      var data = tbl_inbox.rows(indexes).data()[0];
       console.log(data);
+      if (data['id_disposisi'] != null){
+        window.location.href = window.js_base_url + "baca/disposisi/" + data['id_disposisi'];
+      } else {
+        window.location.href = window.js_base_url + "baca/" + data['id_surat'];
+      }
+      //window.location.href = window.js_base_url + "baca/" + data;
     }
   });
+
+  $('tbody').css('cursor', 'pointer');
   
   function defaultLoad(){
+    $.getJSON(js_base_url + 'cek_inbox', function(response){
+      //console.log(response);
+      data_dokumen = response;
+      $.getJSON(js_base_url + 'cek_disposisi', function(response){
+        //console.log(response);
+        data_disposisi = response;
+        tbl_inbox.clear();
+        tbl_inbox.rows.add(data_dokumen);
+        tbl_inbox.rows.add(data_disposisi);
+        tbl_inbox.draw();
+        return false;
+      })
+      return false;
+    })
+
+    
+
     
   }
 
