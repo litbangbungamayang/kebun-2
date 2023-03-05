@@ -43,6 +43,8 @@ $routes->get('surat_masuk', 'C_user::inbox');
 $routes->get('upload_surat', 'C_user::upload_mail');
 $routes->post('new_mail', 'C_mail::new_mail');
 $routes->get('new_mail', 'C_mail::new_mail');
+$routes->get('cek_inbox', 'C_mail::cek_inbox');
+$routes->get('cek_inbox/jml', 'C_mail::cek_jml_inbox');
 $routes->get('presensi', 'C_user::presensi');
 $routes->get('profil', 'C_user::profil');
 $routes->add('detail/buma', 'C_detail::onfarm/buma');

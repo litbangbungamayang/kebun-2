@@ -24,8 +24,8 @@
             <div class="card-body">
               <? echo form_open_multipart('new_mail'); ?>
               <div class="form-group row mb-3">
-                <!-- TODO : BUAT NOTIF SAAT BERHASIL SIMPAN -->
-                <div class="col-sm-4 alert alert-success alert-dismissible" role="alert" style=<?php echo $msg == NULL ? "display:none" : ""; ?>>
+                <!-- DONE : BUAT NOTIF SAAT BERHASIL SIMPAN -->
+                <div class="col-sm-4 alert alert-success alert-dismissible" role="alert" style=<?php echo session()->get('entri_msg') == NULL ? "display:none" : ""; ?>>
                   <div class="d-flex">
                     <div>
                       <!-- Download SVG icon from http://tabler-icons.io/i/check -->
@@ -40,7 +40,7 @@
                       <div class="text-muted">Data dokumen masuk telah tersimpan. </div>
                     </div>
                   </div>
-                  <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                  <a class="btn-close" data-bs-dismiss="alert" aria-label="close"><? unset($msg);?></a>
                 </div>
               </div>
               <div class="form-group row mb-3">

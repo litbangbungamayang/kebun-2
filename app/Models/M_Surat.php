@@ -52,8 +52,6 @@ class M_Surat extends Model{
     $kategori_dokumen = 'UMUM'; //UMUM-RAHASIA
     $file_surat = $request->getFiles();
     $file_surat = $file_surat['file_surat'];
-    
-    //var_dump($jns_dokumen); die();
     $id_pegawai = session('id_pegawai');
     $entri_baru = array(
       'jns_dokumen'=>$jns_dokumen,
@@ -126,10 +124,28 @@ class M_Surat extends Model{
       var_dump($msg_file);
     } else {
       $this->db->transCommit();
-      $data = ['msg'=>'Entri sukses'];
-      return view('upload_mail', $data);
+      session()->setFlashdata('entri_msg','Entri sukses');
+      return redirect()->route('upload_surat');
     }
     /*----------------------------------------------------*/
+  }
+
+  public function cek_inbox(){
+    $id_pegawai = session('id_pegawai');
+    $sql = "select * from tbl_kantor_surat_masuk smasuk 
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
+      where smasuk.tujuan_dokumen = ? order by smasuk.status_dokumen asc, smasuk.tgl_diterima asc";
+    return $this->db->query($sql, array($id_pegawai))->getResultArray();
+  }
+
+  public function cek_unread(){
+    $id_pegawai = session('id_pegawai');
+    $sql = "select * from tbl_kantor_surat_masuk smasuk 
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
+      where smasuk.tujuan_dokumen = ? and smasuk.status_dokumen = 1";
+    return $this->db->query($sql, array($id_pegawai))->getResultArray();
   }
 
 }

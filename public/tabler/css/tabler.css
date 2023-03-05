@@ -7951,7 +7951,7 @@ Navbar
       justify-content: center;
       border-radius: 4px; }
       .navbar .navbar-nav .nav-link .badge {
-        position: absolute;
+        /* position: absolute; */
         top: .375rem;
         right: .375rem;
         transform: translate(50%, -50%); }

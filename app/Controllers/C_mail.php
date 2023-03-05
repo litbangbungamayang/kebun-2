@@ -36,7 +36,7 @@ class C_mail extends BaseController
 	public function new_mail(){
 		$validation_rules = [
 			'file_surat' => [
-				'label' => 'Document',
+				'label' => 'File surat',
 				'rules' => [
 					'uploaded[file_surat]',
 					'max_size[file_surat,10240]',
@@ -44,7 +44,32 @@ class C_mail extends BaseController
 				],
 				'errors' => [
 					'max_size' => 'Ukuran file melebihi batas yang diperbolehkan (Maks. 10 MB)',
-					'mime_in' => 'Jenis file tidak valid!'
+					'mime_in' => 'Jenis file tidak valid!',
+					'uploaded' => 'File dokumen harus ada!'
+				]
+			],
+			'tujuan_dokumen' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tujuan dokumen harus ada!'
+				]
+			],
+			'nomor_dokumen' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nomor dokumen harus ada!'
+				]
+			],
+			'perihal' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Perihal dokumen harus ada!'
+				]
+			],
+			'sub_asal_dokumen' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Asal dokumen harus ada!'
 				]
 			]
 		];
@@ -55,6 +80,15 @@ class C_mail extends BaseController
 		} else {
 			return $this->m_surat->new_mail($this->request);
 		}
+	}
+
+	public function cek_inbox(){
+		$list = $this->m_surat->cek_inbox();
+		return json_encode($list);
+	}
+
+	public function cek_unread(){
+		return (count($this->m_surat->cek_unread()));
 	}
 
 }

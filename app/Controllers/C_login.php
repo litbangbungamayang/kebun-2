@@ -42,6 +42,10 @@ class C_login extends BaseController
 				} else {
 					$this->session->set($userdata);
 					//return view('dashboard');
+					//cek total surat masuk
+					$list = $this->m_surat->cek_unread();
+					$jml_surat = count($list);
+					$this->session->set('inbox_count', $jml_surat);
 					return redirect()->route('home');
 				}
 			}

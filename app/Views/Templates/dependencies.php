@@ -21,4 +21,6 @@
 <!-- DataTables -->
 <link href="<?php echo base_url('public/DataTables/datatables.min.css');?>" rel="stylesheet"/>
 <script src="<?php echo base_url('public/DataTables/datatables.min.js');?>"></script>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/67e6b84d2c.js" crossorigin="anonymous"></script>
 <!------------------------------------------------------------->

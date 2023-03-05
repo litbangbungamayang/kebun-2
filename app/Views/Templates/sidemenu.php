@@ -9,7 +9,8 @@
         <img src="<?php echo base_url('public/assets/logo-white.png');?>" width="220" height="64" alt="Tabler" class="navbar-brand-image">
       </a>
     </h1>
-    <h4>PT Buma Cima Nusantara</h4>
+    <div id="test1"></div>
+    <h4 id="company_name">PT Buma Cima Nusantara</h4>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="navbar-nav pt-lg-3">
         <li class="nav-item">
@@ -42,11 +43,11 @@
               </svg>
             </span>
             <span class="nav-link-title">
-              Presensi
+              Presensi 
             </span>
           </a>
         </li>
-        <li class="nav-item" style="<? echo session('id_pegawai') != '7002093' ? 'display:none' : '';?>">
+        <li class="nav-item" style="<? echo session('id_pegawai') != ('7002093' || '7003306') ? 'display:none' : '';?>">
           <a class="nav-link" href="<?php echo site_url('/surat_masuk');?>" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -56,8 +57,8 @@
               </svg>
             </span>
             <span class="nav-link-title">
-              Surat Masuk
-            </span>
+              Surat Masuk 
+            </span><span class="badge bg-red" style="" id=""><? echo session('inbox_count'); ?></span>
           </a>
         </li>
         <li class="nav-item" style="<? echo session('id_pegawai') != '7002093' ? 'display:none' : '';?>">
