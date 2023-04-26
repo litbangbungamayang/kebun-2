@@ -151,11 +151,29 @@ class M_Surat extends Model{
 
   public function cek_unread(){
     $id_pegawai = session('id_pegawai');
-    $sql = "select * from tbl_kantor_dokumen_masuk smasuk 
+    $sql = "select count(*) as jml from tbl_kantor_dokumen_masuk smasuk 
       join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
       join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
       where smasuk.tujuan_dokumen = ? and smasuk.status_dokumen = 1";
-    return $this->db->query($sql, array($id_pegawai))->getResultArray();
+    $surat_unread = $this->db->query($sql, array($id_pegawai))->getResultArray();
+    $sql_dispo = "select count(*) as jml from tbl_kantor_disposisi dispo
+      join tbl_kantor_dokumen_masuk dmasuk on dmasuk.id_surat = dispo.id_surat
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = dmasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen
+      where id_pegawai_tujuan = ? and dispo.status_disposisi = 1 order by status_disposisi, tgl_kirim_disposisi";
+    $dispo_unread = $this->db->query($sql_dispo, array($id_pegawai))->getResultArray();
+    $surat_unread = (int)$surat_unread[0]['jml'];
+    $dispo_unread = (int)$dispo_unread[0]['jml'];
+    return $surat_unread + $dispo_unread;
+  }
+
+  public function baca_surat($id_surat){
+    $sql = "select * from tbl_kantor_dokumen_masuk smasuk 
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
+      join tbl_kantor_file_surat file_surat on file_surat.id_surat = smasuk.id_surat
+      where smasuk.id_surat = ?";
+    return ($this->db->query($sql, array($id_surat))->getRowArray());
   }
 
 }

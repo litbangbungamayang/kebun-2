@@ -90,10 +90,16 @@ class C_mail extends BaseController
 	public function cek_disposisi(){
 		$list = $this->m_surat->cek_disposisi();
 		return json_encode($this->m_surat->cek_disposisi());
-	}
+	}		//var_dump($data[0]); die();
 
 	public function cek_unread(){
 		return (count($this->m_surat->cek_unread()));
+	}
+
+	public function baca_surat($id_surat){
+		$data = ($this->m_surat->baca_surat($id_surat));
+		//var_dump($data); die();
+		return view('read_mail', $data);
 	}
 
 }

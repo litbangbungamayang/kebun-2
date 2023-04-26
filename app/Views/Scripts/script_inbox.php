@@ -88,7 +88,6 @@
       } else {
         window.location.href = window.js_base_url + "baca/" + data['id_surat'];
       }
-      //window.location.href = window.js_base_url + "baca/" + data;
     }
   });
 

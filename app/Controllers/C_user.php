@@ -22,7 +22,7 @@ class C_user extends BaseController
 	public function inbox(){
 		if ($this->session->has('username') == true){
 			$unread = $this->m_surat->cek_unread();
-			$this->session->set('inbox_count', count($unread));
+			$this->session->set('inbox_count', $unread);
 			return view('inbox');
 		} else {
 			return redirect('login');
@@ -63,3 +63,4 @@ class C_user extends BaseController
 		return json_encode($this->m_user->cekPresensi($request));
 	}
 }
+?>
