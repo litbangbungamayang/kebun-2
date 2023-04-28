@@ -50,8 +50,9 @@ class M_Surat extends Model{
     $status_dokumen = '1';
     $sifat_dokumen = 'BIASA'; //BIASA-SEGERA-PENTING
     $kategori_dokumen = 'UMUM'; //UMUM-RAHASIA
-    $file_surat = $request->getFiles();
-    $file_surat = $file_surat['file_surat'];
+    $file_uploaded = $request->getFiles();
+    $file_surat = $file_uploaded['file_surat'];
+    $file_lampiran = $file_uploaded['file_lampiran'];
     $id_pegawai = session('id_pegawai');
     $entri_baru = array(
       'jns_dokumen'=>$jns_dokumen,
@@ -79,26 +80,14 @@ class M_Surat extends Model{
       status_dokumen,
       kategori_dokumen,
       sifat_dokumen,
-      upload_by) values (?,?,?,?,?,?,?,?,?,?,?)';
-    //var_dump($entri_baru);
-    //nggak tau kenapa kok nggak bisa di-insert langsung pake array $entri_baru, bangke!
-    $msg = ($this->db->query($query_entri_baru, array(
-      $entri_baru['jns_dokumen'],
-      $entri_baru['id_sub_asal_dokumen'],
-      $entri_baru['tujuan_dokumen'],
-      $entri_baru['nomor_dokumen'],
-      $entri_baru['perihal'],
-      $entri_baru['tgl_dokumen'],
-      $entri_baru['tgl_diterima'],
-      $entri_baru['status_dokumen'],
-      $entri_baru['kategori_dokumen'],
-      $entri_baru['sifat_dokumen'],
-      $entri_baru['upload_by']
-    )));
+      upload_by) values (
+        :jns_dokumen:, :id_sub_asal_dokumen:, :tujuan_dokumen:, :nomor_dokumen:, :perihal:, :tgl_dokumen:, :tgl_diterima:, :status_dokumen:, :kategori_dokumen:, :sifat_dokumen:, :upload_by:)';
+    $msg = ($this->db->query($query_entri_baru, $entri_baru));
     $id_dokumen_masuk = ($this->db->insertID());
 
     /*-------- ENTRI FILE SURAT -----------*/
     $path_surat = [];
+    $entri_surat = [];
     foreach ($file_surat as $surat) {
       if ($surat->isValid() && !$surat->hasMoved()){
         $nama_awal = $surat->getClientName();
@@ -106,25 +95,40 @@ class M_Surat extends Model{
         //$path_surat[] = array('nama_awal'=>$nama_awal, 'nama_baru'=>$nama_baru);
         $entri_surat = array(
           'id_surat'=>$id_dokumen_masuk,
+          'jenis'=>"surat",
           'path_surat'=>$nama_baru,
           'nama_awal'=>$nama_awal
         );
-        $query_entri_file = 'insert into tbl_kantor_file_surat (id_surat,path_surat,nama_awal) values(?,?,?)';
-        $msg_file = ($this->db->query($query_entri_file, array(
-          $entri_surat['id_surat'],
-          $entri_surat['path_surat'],
-          $entri_surat['nama_awal']
-        )));
+        $query_entri_file = 'insert into tbl_kantor_file_surat (id_surat,jenis,path_surat,nama_awal) values(:id_surat:,:jenis:,:path_surat:,:nama_awal:)';
+        $msg_file = ($this->db->query($query_entri_file, $entri_surat));
       }
     }
     /*--------------------------------------*/
+    /*-------- ENTRI FILE LAMPIRAN -----------*/
+    $path_surat = [];
+    $entri_lampiran = [];
+    foreach ($file_lampiran as $surat) {
+      if ($surat->isValid() && !$surat->hasMoved()){
+        $nama_awal = $surat->getClientName();
+        $nama_baru = $surat->store();
+        //$path_surat[] = array('nama_awal'=>$nama_awal, 'nama_baru'=>$nama_baru);
+        $entri_lampiran = array(
+          'id_surat'=>$id_dokumen_masuk,
+          'jenis'=>"lampiran",
+          'path_surat'=>$nama_baru,
+          'nama_awal'=>$nama_awal
+        );
+        $query_entri_lampiran = 'insert into tbl_kantor_file_surat (id_surat,jenis,path_surat,nama_awal) values(:id_surat:,:jenis:,:path_surat:,:nama_awal:)';
+        $msg_lampiran = ($this->db->query($query_entri_lampiran, $entri_lampiran));
+      }
+    }
+    /*----------------------------------------------------*/
     if ($this->db->transStatus() === false){
-      echo 'Eror entri data!';
-      var_dump($msg);
-      var_dump($msg_file);
+      session()->setFlashdata('entri_error', 'Entri gagal');
+      return redirect()->route('upload_surat');
     } else {
       $this->db->transCommit();
-      session()->setFlashdata('entri_msg','Entri sukses');
+      session()->setFlashdata('entri_msg', 'Entri sukses');
       return redirect()->route('upload_surat');
     }
     /*----------------------------------------------------*/

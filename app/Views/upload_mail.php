@@ -24,7 +24,6 @@
             <div class="card-body">
               <? echo form_open_multipart('new_mail'); ?>
               <div class="form-group row mb-3">
-                <!-- DONE : BUAT NOTIF SAAT BERHASIL SIMPAN -->
                 <div class="col-sm-4 alert alert-success alert-dismissible" role="alert" style=<?php echo session()->get('entri_msg') == NULL ? "display:none" : ""; ?>>
                   <div class="d-flex">
                     <div>
@@ -38,6 +37,23 @@
                     <div>
                       <h4 class="alert-title">Entri berhasil!</h4>
                       <div class="text-muted">Data dokumen masuk telah tersimpan. </div>
+                    </div>
+                  </div>
+                  <a class="btn-close" data-bs-dismiss="alert" aria-label="close"><? unset($msg);?></a>
+                </div>
+                <div class="col-sm-4 alert alert-danger alert-dismissible" role="alert" style=<?php echo session()->get('entri_error') == NULL ? "display:none" : ""; ?>>
+                  <div class="d-flex">
+                    <div>
+                      <!-- Download SVG icon from http://tabler-icons.io/i/circle-x -->
+	                    <svg xmlns="http://www.w3.org/2000/svg" class="alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M10 10l4 4m0 -4l-4 4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="alert-title">Entri tidak berhasil!</h4>
+                      <div class="text-muted">Data dokumen masuk <b>gagal</b> disimpan! </div>
                     </div>
                   </div>
                   <a class="btn-close" data-bs-dismiss="alert" aria-label="close"><? unset($msg);?></a>
@@ -96,7 +112,14 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">File surat</label>
                 <div class="col-sm-4">
-                  <input type="file" class="form-control" name="file_surat[]" id="file_surat" placeholder="File surat" multiple>
+                  <input type="file" class="form-control" name="file_surat[]" id="file_surat" placeholder="File surat">
+                  <div class="text-muted">(hanya file pdf)</div>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">File lampiran</label>
+                <div class="col-sm-4">
+                  <input type="file" class="form-control" name="file_lampiran[]" id="file_lampiran" placeholder="File lampiran" multiple>
                   <div class="text-muted">(file pdf, excel, atau word)</div>
                 </div>
               </div>

@@ -19,7 +19,7 @@
         <div class="row">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Form Dokumen Masuk</h3>
+              <h3 class="card-title">Detail Dokumen Masuk</h3>
             </div>
             <div class="card-body">
               <? echo form_open_multipart('new_mail'); ?>
@@ -43,7 +43,11 @@
                   <a class="btn-close" data-bs-dismiss="alert" aria-label="close"><? unset($msg);?></a>
                 </div>
               </div>
+              <!-- HIDDEN FIELD -->
               <div hidden id="val_jenis_dokumen"><?php echo $jenis_dokumen;?></div>
+              <div hidden id="val_asal_dokumen"><?php echo $nm_asal_dokumen;?></div>
+              <div hidden id="val_sub_asal_dokumen"><?php echo $nm_sub_asal_dokumen;?></div>
+              <!------------------>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Jenis Dokumen</label>
                 <div class="col-sm-4">
@@ -73,25 +77,25 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Dari</label>
                 <div class="col-sm-4">
-                  <select class="" name="asal_dokumen" id="asal_dokumen"></select>
+                  <select disabled class="" name="asal_dokumen" id="asal_dokumen"></select>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-4">
-                  <select class="" name="sub_asal_dokumen" id="sub_asal_dokumen"></select>
+                  <select disabled class="" name="sub_asal_dokumen" id="sub_asal_dokumen"></select>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Tanggal dokumen</label>
                 <div class="col-sm-2">
-                  <input type="date" class="form-control" name="tgl_dokumen" id="tgl_dokumen" placeholder="Tanggal dokumen">
+                  <input disabled type="date" class="form-control" name="tgl_dokumen" id="tgl_dokumen" placeholder="Tanggal dokumen" value=<? echo $tgl_dokumen; ?>>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Tanggal diterima</label>
                 <div class="col-sm-2">
-                  <input type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" placeholder="Tanggal diterima">
+                  <input disabled type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" placeholder="Tanggal diterima" value=<? echo $tgl_diterima; ?>>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -99,23 +103,6 @@
                 <div class="col-sm-4">
                   <input type="file" class="form-control" name="file_surat[]" id="file_surat" placeholder="File surat" multiple>
                   <div class="text-muted">(file pdf, excel, atau word)</div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <div class="col-sm-6 alert alert-danger" style="<? echo $errors == NULL ? "display:none" : "" ?>">
-                  <?
-                    if(isset($errors)){
-                      foreach ($errors as $error):
-                        echo '<li>'.esc($error).'</li>';
-                      endforeach;
-                    }
-                  ?>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-2">
-                  <button type="submit" class="btn btn-primary w-100">Simpan</button>
                 </div>
               </div>
               <? echo form_close();?>

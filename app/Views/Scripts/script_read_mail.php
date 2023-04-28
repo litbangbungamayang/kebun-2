@@ -11,16 +11,22 @@
   var $cbxSubAsalDokumen, cbxSubAsalDokumen;
   var $cbxJenisDokumen, cbxJenisDokumen;
   var $cbxTujuanDokumen, cbxTujuanDokumen;
-  var dpTglDokumen = $("#tgl_dokumen");
   var valJenisDokumen = $("#val_jenis_dokumen");
+  var valAsalDokumen = $("#val_asal_dokumen");
+  var valSubAsalDokumen = $("#val_sub_asal_dokumen");
 
   
   function defaultLoad(){
-    console.log(valJenisDokumen.text());
-    cbxJenisDokumen.setValue(valJenisDokumen.text());
+    loadDataSurat();
   }
 
-  
+  function loadDataSurat(){
+    cbxJenisDokumen.setValue(valJenisDokumen.text());
+    cbxAsalDokumen.addOption({id_asal_dokumen:1, nm_asal_dokumen:valAsalDokumen.text()});
+    cbxAsalDokumen.setValue(1);
+    cbxSubAsalDokumen.addOption({id_sub_asal:1, nm_sub_asal_dokumen:valSubAsalDokumen.text()});
+    cbxSubAsalDokumen.setValue(1);
+  }
 
   $cbxJenisDokumen = $("#jns_dokumen").selectize({
     valueField: 'id',
@@ -49,6 +55,17 @@
   })
   cbxSubAsalDokumen = $cbxSubAsalDokumen[0].selectize;
 
+  $cbxAsalDokumen = $("#asal_dokumen").selectize({
+    valueField: "id_asal_dokumen",
+    labelField: "nm_asal_dokumen",
+    sortField: "id_asal_dokumen",
+    searchField: "nm_asal_dokumen",
+    maxItems: 1,
+    create: false,
+    placeholder: "Pilih asal dokumen.."
+  })
+  cbxAsalDokumen = $cbxAsalDokumen[0].selectize;
+
   $.ajax({
     url: js_base_url + 'C_mail/getTujuanDokumen',
     type: 'GET',
@@ -69,6 +86,7 @@
     }
   })
 
+/*
   $.ajax({
     url: js_base_url + "C_mail/getAsalDokumen",
     type: 'GET',
@@ -106,8 +124,10 @@
       })
       cbxAsalDokumen = $cbxAsalDokumen[0].selectize;
       cbxSubAsalDokumen.disable();
+      loadDataSurat();
     }
   })
+*/
 
   function convertArrayToNumber(arrToConvert){
     if (Array.isArray(arrToConvert)){
