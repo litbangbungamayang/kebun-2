@@ -47,6 +47,7 @@ $routes->get('cek_inbox', 'C_mail::cek_inbox');
 $routes->get('cek_inbox/jml', 'C_mail::cek_jml_inbox');
 $routes->get('cek_disposisi', 'C_mail::cek_disposisi');
 $routes->get('baca/(:num)', 'C_mail::baca_surat/$1');
+$routes->get('lihat_dokumen', 'C_mail::lihat_surat');
 $routes->get('presensi', 'C_user::presensi');
 $routes->get('profil', 'C_user::profil');
 $routes->add('detail/buma', 'C_detail::onfarm/buma');

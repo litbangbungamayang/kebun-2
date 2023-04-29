@@ -108,9 +108,19 @@ class C_mail extends BaseController
 	}
 
 	public function baca_surat($id_surat){
-		$data = ($this->m_surat->baca_surat($id_surat));
+		//$data = ($this->m_surat->baca_surat($id_surat));
+		$data['result_surat'] = $this->m_surat->baca_surat($id_surat);
 		//var_dump($data); die();
 		return view('read_mail', $data);
+	}
+
+	public function lihat_surat(){
+		$path_surat = base_url("writable/uploads/".$this->request->getGet('path'));
+		//echo $path_surat;
+		$data = array(
+			"path_surat"=>$path_surat
+		);
+		return view('view_docs', $data);
 	}
 
 }

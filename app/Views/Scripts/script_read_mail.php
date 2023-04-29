@@ -14,6 +14,7 @@
   var valJenisDokumen = $("#val_jenis_dokumen");
   var valAsalDokumen = $("#val_asal_dokumen");
   var valSubAsalDokumen = $("#val_sub_asal_dokumen");
+  var btnViewSurat = $("#btn_view_surat");
 
   
   function defaultLoad(){
@@ -27,6 +28,17 @@
     cbxSubAsalDokumen.addOption({id_sub_asal:1, nm_sub_asal_dokumen:valSubAsalDokumen.text()});
     cbxSubAsalDokumen.setValue(1);
   }
+
+  btnViewSurat.click(function (e){
+    val_btn = $(this).val();
+    /*
+    $.ajax({
+      type: "GET",
+      url: js_base_url + "lihat_dokumen/",
+      data: {path: val_btn}
+    })
+    */
+  })
 
   $cbxJenisDokumen = $("#jns_dokumen").selectize({
     valueField: 'id',

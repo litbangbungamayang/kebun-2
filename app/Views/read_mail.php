@@ -22,28 +22,29 @@
               <h3 class="card-title">Detail Dokumen Masuk</h3>
             </div>
             <div class="card-body">
-              <? echo form_open_multipart('new_mail'); ?>
               <div class="form-group row mb-3">
-                <!-- DONE : BUAT NOTIF SAAT BERHASIL SIMPAN -->
-                <div class="col-sm-4 alert alert-success alert-dismissible" role="alert" style=<?php echo session()->get('entri_msg') == NULL ? "display:none" : ""; ?>>
-                  <div class="d-flex">
-                    <div>
-                      <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                      <!-- SVG icon code with class="alert-icon" -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 class="alert-title">Entri berhasil!</h4>
-                      <div class="text-muted">Data dokumen masuk telah tersimpan. </div>
-                    </div>
-                  </div>
-                  <a class="btn-close" data-bs-dismiss="alert" aria-label="close"><? unset($msg);?></a>
-                </div>
               </div>
               <!-- HIDDEN FIELD -->
+              <? 
+                $jenis_dokumen = $result_surat[0]['jenis_dokumen'];
+                $nm_asal_dokumen = $result_surat[0]['nm_asal_dokumen'];
+                $nm_sub_asal_dokumen = $result_surat[0]['nm_sub_asal_dokumen'];
+                $nomor_dokumen = $result_surat[0]['nomor_dokumen'];
+                $perihal_dokumen = $result_surat[0]['perihal_dokumen'];
+                $tgl_dokumen = $result_surat[0]['tgl_dokumen'];
+                $tgl_diterima = $result_surat[0]['tgl_diterima'];
+                $path_surat = "";
+                $path_lampiran = [];
+                foreach($result_surat as $dokumen){
+                  if($dokumen['jenis'] == "surat"){
+                    $path_surat = $dokumen['path_surat'];
+                  } else {
+                    if($dokumen['jenis'] == "lampiran"){
+                      array_push($path_lampiran, array("path"=>$dokumen['path_surat'], "nama"=>$dokumen['nama_awal']));
+                    }
+                  }
+                }
+              ?>
               <div hidden id="val_jenis_dokumen"><?php echo $jenis_dokumen;?></div>
               <div hidden id="val_asal_dokumen"><?php echo $nm_asal_dokumen;?></div>
               <div hidden id="val_sub_asal_dokumen"><?php echo $nm_sub_asal_dokumen;?></div>
@@ -100,12 +101,24 @@
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">File surat</label>
-                <div class="col-sm-4">
-                  <input type="file" class="form-control" name="file_surat[]" id="file_surat" placeholder="File surat" multiple>
-                  <div class="text-muted">(file pdf, excel, atau word)</div>
+                <div class="col-sm-2">
+                  <a  href=<? echo base_url("lihat_dokumen/?path=".$path_surat); ?> class="btn btn-primary w-100" target="_blank" >Lihat dokumen </a>
                 </div>
               </div>
-              <? echo form_close();?>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">File lampiran</label>
+                <div class="col-sm-6">
+                  <div class="list-group">
+                  <?
+                    foreach($path_lampiran as $lampiran){
+                      echo '<a href='.base_url("writable/uploads/".$lampiran['path']).' class="list-group-item" target="_blank">'.$lampiran['nama'].'</a>';
+                      //onclick="location.href = 'your_link';
+                      //echo '<a href="#" class="list-group-item">'.$lampiran['nama'].'</a>';
+                    }
+                  ?>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -137,6 +150,25 @@
           </div>
         </div>
       </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

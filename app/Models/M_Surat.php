@@ -69,7 +69,7 @@ class M_Surat extends Model{
     );
     /*--------------- DB TRANSACTIONS --------------------*/
     $this->db->transBegin();
-    $query_entri_baru = 'insert into tbl_kantor_surat_masuk (
+    $query_entri_baru = 'insert into tbl_kantor_dokumen_masuk (
       jenis_dokumen,
       id_sub_asal_dokumen,
       tujuan_dokumen,
@@ -177,7 +177,7 @@ class M_Surat extends Model{
       join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen 
       join tbl_kantor_file_surat file_surat on file_surat.id_surat = smasuk.id_surat
       where smasuk.id_surat = ?";
-    return ($this->db->query($sql, array($id_surat))->getRowArray());
+    return ($this->db->query($sql, array($id_surat))->getResultArray());
   }
 
 }
