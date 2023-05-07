@@ -26,6 +26,8 @@
   var valJenisDokumen = $("#val_jenis_dokumen");
   var valAsalDokumen = $("#val_asal_dokumen");
   var valSubAsalDokumen = $("#val_sub_asal_dokumen");
+  var valArrTujuanDispo = $("#arr_tujuan_dispo");
+  var valResultDispoSurat = $("#res_dispo_surat");
   var btnViewSurat = $("#btn_view_surat");
 
   
@@ -103,6 +105,8 @@
     cbxAsalDokumen.setValue(1);
     cbxSubAsalDokumen.addOption({id_sub_asal:1, nm_sub_asal_dokumen:valSubAsalDokumen.text()});
     cbxSubAsalDokumen.setValue(1);
+    console.log(JSON.parse(valArrTujuanDispo.val()));
+    console.log(valResultDispoSurat.val());
   }
 
   $cbxJenisDokumen = $("#jns_dokumen").selectize({
@@ -160,6 +164,10 @@
         options: response
       })
       cbxTujuanDispo = $cbxTujuanDispo[0].selectize;
+      let arr_dispo = JSON.parse(valArrTujuanDispo.val());
+      if(arr_dispo.length > 0){
+        cbxTujuanDispo.setValue(arr_dispo);
+      }
     }
   })
 
@@ -179,6 +187,7 @@
         options: response
       })
       cbxDispoSurat = $cbxDispoSurat[0].selectize;
+      cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
     }
   })
 

@@ -36,6 +36,12 @@
                 $perihal_dokumen = $result_surat[0]['perihal_dokumen'];
                 $tgl_dokumen = $result_surat[0]['tgl_dokumen'];
                 $tgl_diterima = $result_surat[0]['tgl_diterima'];
+                $arr_tujuan_disposisi = [];
+                $result_disposisi = $disposisi[0]['disposisi_surat'];
+                $result_catatan_dispo = $disposisi[0]['catatan_disposisi'];
+                foreach($disposisi as $item_dispo){
+                  array_push($arr_tujuan_disposisi,$item_dispo['id_pegawai_tujuan']);
+                }
                 $path_surat = "";
                 $path_lampiran = [];
                 foreach($result_surat as $dokumen){
@@ -53,6 +59,8 @@
               <div hidden id="val_sub_asal_dokumen"><?php echo $nm_sub_asal_dokumen;?></div>
               <input hidden id="id_surat" name="id_surat" value=<? echo $id_surat; ?>>
               <input hidden id="status_dokumen" name="status_dokumen" value=<? echo $status_dokumen; ?>>
+              <input hidden id="arr_tujuan_dispo" value=<? echo json_encode($arr_tujuan_disposisi); ?>>
+              <input hidden id="res_dispo_surat" value=<? echo $result_disposisi; ?>>
               <!------------------>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Jenis Dokumen</label>
@@ -118,21 +126,21 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Disposisi kepada</label>
                 <div class="col-sm-6">
-                  <select class="" name="tujuan_dispo" id="tujuan_dispo">
+                  <select <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="" name="tujuan_dispo" id="tujuan_dispo">
                   </select>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Disposisi</label>
                 <div class="col-sm-6">
-                  <select class="" name="dispo_surat" id="dispo_surat">
+                  <select <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="" name="dispo_surat" id="dispo_surat">
                   </select>
                 </div>
               </div>
                <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Catatan disposisi</label>
                 <div class="col-sm-6">
-                  <textarea class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"></textarea>
+                  <textarea <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $result_catatan_dispo; ?></textarea>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -150,7 +158,10 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-2">
-                  <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                  <button <? echo (sizeof($disposisi)>0) ? "hidden" : ""; ?> type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                </div>
+                <div class="col-sm-2">
+                  <a href="<? echo site_url("/surat_masuk");?>" <? echo (sizeof($disposisi)>0) ? "" : "hidden"; ?> type="" id="btnKembali" class="btn btn-primary w-100">Kembali</a>
                 </div>
               </div>
               <? echo form_close();?>

@@ -120,6 +120,7 @@ class C_mail extends BaseController
 		if($this->session->has('username') == true){
 			$data['errors'] = $data['errors'];
 			$data['result_surat'] = $this->m_surat->baca_surat($id_surat);
+			$data['disposisi'] = $this->m_surat->get_disposisi($id_surat);
 			return view('read_mail', $data);
 		} else {
 			return redirect('login');
