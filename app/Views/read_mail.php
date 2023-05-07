@@ -22,10 +22,13 @@
               <h3 class="card-title">Detail Dokumen Masuk</h3>
             </div>
             <div class="card-body">
+              <? echo form_open("dispo_baru", 'id="form_dispo" onsubmit="return true;"'); ?>
               <div class="form-group row mb-3">
               </div>
               <!-- HIDDEN FIELD -->
               <? 
+                $id_surat = $result_surat[0]['id_surat'];
+                $status_dokumen = $result_surat[0]['status_dokumen'];
                 $jenis_dokumen = $result_surat[0]['jenis_dokumen'];
                 $nm_asal_dokumen = $result_surat[0]['nm_asal_dokumen'];
                 $nm_sub_asal_dokumen = $result_surat[0]['nm_sub_asal_dokumen'];
@@ -48,18 +51,13 @@
               <div hidden id="val_jenis_dokumen"><?php echo $jenis_dokumen;?></div>
               <div hidden id="val_asal_dokumen"><?php echo $nm_asal_dokumen;?></div>
               <div hidden id="val_sub_asal_dokumen"><?php echo $nm_sub_asal_dokumen;?></div>
+              <input hidden id="id_surat" name="id_surat" value=<? echo $id_surat; ?>>
+              <input hidden id="status_dokumen" name="status_dokumen" value=<? echo $status_dokumen; ?>>
               <!------------------>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Jenis Dokumen</label>
                 <div class="col-sm-4">
                   <select disabled class="" name="jns_dokumen" id="jns_dokumen">
-                  </select>
-                </div>
-              </div>
-              <div hidden class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label">Tujuan Dokumen</label>
-                <div class="col-sm-4">
-                  <select class="" name="tujuan_dokumen" id="tujuan_dokumen">
                   </select>
                 </div>
               </div>
@@ -112,13 +110,50 @@
                   <?
                     foreach($path_lampiran as $lampiran){
                       echo '<a href='.base_url("writable/uploads/".$lampiran['path']).' class="list-group-item" target="_blank">'.$lampiran['nama'].'</a>';
-                      //onclick="location.href = 'your_link';
-                      //echo '<a href="#" class="list-group-item">'.$lampiran['nama'].'</a>';
                     }
                   ?>
                   </div>
                 </div>
               </div>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">Disposisi kepada</label>
+                <div class="col-sm-6">
+                  <select class="" name="tujuan_dispo" id="tujuan_dispo">
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">Disposisi</label>
+                <div class="col-sm-6">
+                  <select class="" name="dispo_surat" id="dispo_surat">
+                  </select>
+                </div>
+              </div>
+               <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">Catatan disposisi</label>
+                <div class="col-sm-6">
+                  <textarea class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"></textarea>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <div id="form_err_msg" class="col-sm-6 alert alert-danger" style="<? echo $errors == NULL ? "display:none" : "" ?>">
+                  <?
+                    if(isset($errors)){
+                      //$errors = $errors['errors'];
+                      foreach ($errors as $error):
+                        echo '<li>'.esc($error).'</li>';
+                      endforeach;
+                    }
+                  ?>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-2">
+                  <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                </div>
+              </div>
+              <? echo form_close();?>
             </div>
           </div>
         </div>

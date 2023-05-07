@@ -93,6 +93,15 @@ class C_mail extends BaseController
 		}
 	}
 
+	public function dispo_baru(){
+		$requestData = json_decode($this->request->getPost('formData'));
+		if(is_array($requestData) || is_object($requestData)){
+			if($this->m_surat->tambah_disposisi($requestData) === "SUCCESS"){
+				return json_encode("SUCCESS");
+			}
+		}
+	}
+
 	public function cek_inbox(){
 		$list = $this->m_surat->cek_inbox();
 		return json_encode($list);
@@ -101,26 +110,50 @@ class C_mail extends BaseController
 	public function cek_disposisi(){
 		$list = $this->m_surat->cek_disposisi();
 		return json_encode($this->m_surat->cek_disposisi());
-	}		//var_dump($data[0]); die();
+	}		
 
 	public function cek_unread(){
 		return (count($this->m_surat->cek_unread()));
 	}
 
-	public function baca_surat($id_surat){
-		//$data = ($this->m_surat->baca_surat($id_surat));
-		$data['result_surat'] = $this->m_surat->baca_surat($id_surat);
-		//var_dump($data); die();
-		return view('read_mail', $data);
+	public function baca_surat($id_surat, $data = null){
+		if($this->session->has('username') == true){
+			$data['errors'] = $data['errors'];
+			$data['result_surat'] = $this->m_surat->baca_surat($id_surat);
+			return view('read_mail', $data);
+		} else {
+			return redirect('login');
+		}
+	}
+
+	public function set_mail_status(){
+		//request parameter : [id_surat][status]
+		if($this->m_surat->set_mail_status($this->request->getPost())){
+			$unread = $this->m_surat->cek_unread();
+			$this->session->set('inbox_count', $unread);
+			return json_encode($unread);
+		}
 	}
 
 	public function lihat_surat(){
 		$path_surat = base_url("writable/uploads/".$this->request->getGet('path'));
-		//echo $path_surat;
 		$data = array(
 			"path_surat"=>$path_surat
 		);
 		return view('view_docs', $data);
+	}
+
+	public function tujuan_disposisi(){
+		$request = array(
+			"level_jabatan"=>$this->request->getGet("level_jabatan"),
+			"unit"=>$this->request->getGet("unit")
+		);
+		$list = $this->m_surat->tujuan_disposisi($request);
+		return json_encode($list);
+	}
+
+	public function list_disposisi(){
+		return json_encode($this->m_surat->list_disposisi());
 	}
 
 }

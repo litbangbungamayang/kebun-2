@@ -27,9 +27,9 @@
                   <thead>
                     <tr>
                       <!-- <th class="text-center" style="width: 25px;">#</th> -->
-                      <th>Jenis Dokumen</th>
+                      <th style="width: 20%;">Jenis Dokumen</th>
                       <th>Detail Dokumen</th>
-                      <th style="width: 15%;">Status Dokumen</th>
+                      <th style="width: 30%;">Status Dokumen</th>
                       <th style="width: 10%">Tgl. Diterima</th>
                       <!-- <th>Status</th> -->
                       <!-- <th class="text-center" style="width: 10%;">Opsi</th> -->

@@ -65,6 +65,9 @@
             case '2':
               status_dokumen = icon_read + " Sudah dibaca";
               break;
+            case '3':
+              status_dokumen = icon_disposisi + " Sudah terdisposisi";
+              break;
           }
           return status_dokumen;
         }
@@ -82,7 +85,7 @@
   tbl_inbox.on('select', function(e, dt, type, indexes){
     if (type == 'row'){
       var data = tbl_inbox.rows(indexes).data()[0];
-      console.log(data);
+      //console.log(data);
       if (data['id_disposisi'] != null){
         window.location.href = window.js_base_url + "baca/disposisi/" + data['id_disposisi'];
       } else {

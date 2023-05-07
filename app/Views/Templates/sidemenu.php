@@ -58,7 +58,7 @@
             </span>
             <span class="nav-link-title">
               Surat Masuk 
-            </span><span class="badge bg-red" style="" id=""><? echo session('inbox_count'); ?></span>
+            </span><span class="badge bg-red" style="" id="newmail_count"><? echo session('inbox_count'); ?></span>
           </a>
         </li>
         <li class="nav-item" style="<? echo session('id_pegawai') != '7002093' ? 'display:none' : '';?>">

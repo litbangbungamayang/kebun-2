@@ -180,4 +180,51 @@ class M_Surat extends Model{
     return ($this->db->query($sql, array($id_surat))->getResultArray());
   }
 
+  public function tujuan_disposisi($request){
+    $sql = "select *, upper(concat(peg.nm_pegawai,'-',jab.nm_jabatan,' ',divisi.nm_divisi)) as label_opsi from tbl_kantor_pegawai peg join tbl_kantor_jabatan jab on peg.id_jabatan = jab.id_jabatan join tbl_sub_divisi subdiv on subdiv.id_sub_divisi = peg.id_sub_divisi join tbl_divisi divisi on divisi.id_divisi = subdiv.id_divisi join tbl_unit unit_kerja on unit_kerja.no = divisi.id_unit where jab.level_jabatan = :level_jabatan: and unit_kerja.no = :unit:";
+    return($this->db->query($sql, $request)->getResultArray());
+  }
+
+  public function list_disposisi(){
+    $sql = "select * from tbl_kantor_list_disposisi";
+    return ($this->db->query($sql)->getResultArray());
+  }
+
+  public function tambah_disposisi($request){
+    $this->db->transBegin();
+    $id_surat = 0;
+    foreach($request as $key => $itemReq){
+      $query_dispo = "insert into tbl_kantor_disposisi (id_surat, id_pegawai, id_pegawai_tujuan, status_disposisi, disposisi_surat, catatan_disposisi) values(:id_surat:, :id_pegawai:, :id_pegawai_tujuan:, :status_disposisi:, :disposisi_surat:, :catatan_disposisi:)";
+      $entri_dispo = array(
+        "id_surat" => $itemReq->id_surat,
+        "id_pegawai" => session("id_pegawai"),
+        "id_pegawai_tujuan" => $itemReq->tujuan_dispo,
+        "status_disposisi" => 1,
+        "disposisi_surat" => $itemReq->dispo,
+        "catatan_disposisi" => $itemReq->catatan_dispo
+      );
+      $id_surat = $itemReq->id_surat;
+      $this->db->query($query_dispo, $entri_dispo);
+    }   
+    if ($this->db->transStatus() === false){
+      session()->setFlashdata('entri_error', 'Entri gagal');
+      return "FAILED";
+    } else {
+      $this->db->transCommit();
+      session()->setFlashdata('entri_msg', 'Entri sukses');
+      $status_dispo = array(
+        "id_surat" => $id_surat,
+        "status" => 3
+      );
+      $this->set_mail_status($status_dispo);
+      return "SUCCESS";
+    }
+  }
+
+  public function set_mail_status($request){
+    //parameter : [id_surat][status]
+    $status_query = "update tbl_kantor_dokumen_masuk set status_dokumen = :status: where id_surat = :id_surat:";
+    return ($this->db->query($status_query, $request));
+  }
+
 }

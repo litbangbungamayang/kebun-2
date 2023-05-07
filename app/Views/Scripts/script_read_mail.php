@@ -1,5 +1,9 @@
 <script>
   window.js_base_url = "<? echo base_url(); ?>" + "/index.php/";
+  var id_pegawai = "<? echo session("id_pegawai"); ?>";
+  var nm_jabatan = "<? echo session("nm_jabatan"); ?>";
+  var lv_jabatan = "<? echo session("level_jabatan"); ?>";
+  var no_unit = "<? echo session("no"); ?>";
   
   const bulan = ["JAN", "FEB", "MAR", "APR", "MEI", "JUN", "JUL", "AGT", "SEP", "OKT", "NOV", "DES"];
 
@@ -11,6 +15,14 @@
   var $cbxSubAsalDokumen, cbxSubAsalDokumen;
   var $cbxJenisDokumen, cbxJenisDokumen;
   var $cbxTujuanDokumen, cbxTujuanDokumen;
+  var $cbxTujuanDispo, cbxTujuanDispo;
+  var $cbxDispoSurat, cbxDispoSurat;
+  var $inputSubmitFlag = $("#status_submit");
+  var $btnSubmit = $("#btnSubmit");
+  var $catatanDispo = $("#catatan_dispo");
+  var $formDispo = $("#form_dispo");
+  var $formErrMsg = $("#form_err_msg");
+  var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
   var valJenisDokumen = $("#val_jenis_dokumen");
   var valAsalDokumen = $("#val_asal_dokumen");
   var valSubAsalDokumen = $("#val_sub_asal_dokumen");
@@ -18,9 +30,73 @@
 
   
   function defaultLoad(){
+    //set status surat menjadi process saat berhasil di-buka
+    setMailStatus();
     loadDataSurat();
   }
+  
+  function setMailStatus(){
+    var status_dokumen = $("#status_dokumen");
+    if(status_dokumen.val() === "1"){
+      $.ajax({
+        url: js_base_url + "set_status_surat",
+        type: 'post',
+        dataType: 'json',
+        data: {
+          id_surat: $("#id_surat").val(),
+          status: 2
+        },
+        success: function(msg){
+          $("#newmail_count").text(msg);
+        }
+      })
+    }
+  }
 
+  $btnSubmit.on("click", function (evt){
+    evt.preventDefault();
+    var valTujuanDispo = $cbxTujuanDispo.val();
+    var valDispo = $cbxDispoSurat.val();
+    var valCatatanDispo = $catatanDispo.val();
+    var idSurat = $("#id_surat").val();
+    var arrSubmitDispo = new Array();
+    var errMsg = "";
+    if(valTujuanDispo.length < 1 || valDispo.length < 1){
+      $formErrMsg.css('display', '');
+      if(valTujuanDispo.length < 1) errMsg = "<li>Tujuan disposisi harus ada!</li>";
+      if(valDispo.length < 1 ) errMsg = errMsg + "<li>Disposisi harus ada!</li>";
+      $formErrMsg.empty();
+      $formErrMsg.append(errMsg);
+    } else {
+      $formErrMsg.empty();
+      $formErrMsg.css('display', 'none');
+      //---BUAT ARRAY UNTUK MASING2 TUJUAN DISPOSISI --//
+      valTujuanDispo.forEach(function(item, index, arr){
+        let dispo = {
+          id_surat: idSurat,
+          tujuan_dispo: item,
+          dispo: JSON.stringify(valDispo),
+          catatan_dispo: valCatatanDispo
+        }
+        arrSubmitDispo.push(dispo);
+      })
+      var postData = JSON.stringify(arrSubmitDispo);
+      $.ajax({
+        url: js_base_url + "dispo_baru",
+        type: "post",
+        dataType: "json",
+        data: {formData: postData},
+        success: function(msg){
+          if(msg == "SUCCESS"){
+            alert("Disposisi telah tersimpan.");
+            window.location.href = js_base_url + "surat_masuk";
+          }
+        }
+      })
+    }
+  })
+
+  
   function loadDataSurat(){
     cbxJenisDokumen.setValue(valJenisDokumen.text());
     cbxAsalDokumen.addOption({id_asal_dokumen:1, nm_asal_dokumen:valAsalDokumen.text()});
@@ -28,17 +104,6 @@
     cbxSubAsalDokumen.addOption({id_sub_asal:1, nm_sub_asal_dokumen:valSubAsalDokumen.text()});
     cbxSubAsalDokumen.setValue(1);
   }
-
-  btnViewSurat.click(function (e){
-    val_btn = $(this).val();
-    /*
-    $.ajax({
-      type: "GET",
-      url: js_base_url + "lihat_dokumen/",
-      data: {path: val_btn}
-    })
-    */
-  })
 
   $cbxJenisDokumen = $("#jns_dokumen").selectize({
     valueField: 'id',
@@ -79,22 +144,41 @@
   cbxAsalDokumen = $cbxAsalDokumen[0].selectize;
 
   $.ajax({
-    url: js_base_url + 'C_mail/getTujuanDokumen',
+    url: js_base_url + 'C_mail/tujuan_disposisi',
+    type: 'GET',
+    data: {'level_jabatan': lv_tujuan, 'unit':no_unit},
+    dataType: 'json',
+    success: function(response){
+      $cbxTujuanDispo = $("#tujuan_dispo").selectize({
+        valueField: 'id_pegawai',
+        labelField: 'label_opsi',
+        sortField: 'label_opsi',
+        searchField: 'label_opsi',
+        create: false,
+        maxItems: null,
+        placeholder: 'Pilih tujuan disposisi..',
+        options: response
+      })
+      cbxTujuanDispo = $cbxTujuanDispo[0].selectize;
+    }
+  })
+
+  $.ajax({
+    url: js_base_url + 'C_mail/list_disposisi',
     type: 'GET',
     dataType: 'json',
     success: function(response){
-      //console.log(response);
-      $cbxTujuanDokumen = $("#tujuan_dokumen").selectize({
-        valueField: 'id_pegawai',
-        labelField: 'opsi',
-        sortField: 'level_jabatan',
-        searchField: 'opsi',
-        maxItems: 1,
+      $cbxDispoSurat = $("#dispo_surat").selectize({
+        valueField: 'id_list_disposisi',
+        labelField: 'nm_disposisi',
+        sortField: 'nm_disposisi',
+        searchField: 'nm_disposisi',
         create: false,
-        placeholder: 'Pilih tujuan surat..',
+        maxItems: null,
+        placeholder: 'Pilih disposisi..',
         options: response
       })
-      cbxTujuanDokumen = $cbxTujuanDokumen[0].selectize;
+      cbxDispoSurat = $cbxDispoSurat[0].selectize;
     }
   })
 
