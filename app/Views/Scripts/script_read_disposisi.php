@@ -18,6 +18,7 @@
   var $cbxTujuanDokumen, cbxTujuanDokumen;
   var $cbxTujuanDispo, cbxTujuanDispo;
   var $cbxDispoSurat, cbxDispoSurat;
+  var $cbxDispoTurun, cbxDispoTurun;
   var $inputSubmitFlag = $("#status_submit");
   var $btnSubmit = $("#btnSubmit");
   var $catatanDispo = $("#catatan_dispo");
@@ -142,6 +143,26 @@
       })
       cbxDispoSurat = $cbxDispoSurat[0].selectize;
       cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
+    }
+  })
+
+  $.ajax({
+    url: js_base_url + 'C_mail/list_disposisi',
+    type: 'GET',
+    dataType: 'json',
+    success: function(response){
+      $cbxDispoTurun = $("#dispo_turun").selectize({
+        valueField: 'id_list_disposisi',
+        labelField: 'nm_disposisi',
+        sortField: 'nm_disposisi',
+        searchField: 'nm_disposisi',
+        create: false,
+        maxItems: null,
+        placeholder: 'Pilih disposisi..',
+        options: response
+      })
+      cbxDispoTurun = $cbxDispoTurun[0].selectize;
+      cbxDispoTurun.setValue(JSON.parse(valResultDispoSurat.val()));
     }
   })
 

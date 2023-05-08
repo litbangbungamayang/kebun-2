@@ -125,13 +125,6 @@
                 </div>
               </div>
               <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label">Disposisi kepada</label>
-                <div class="col-sm-6">
-                  <select  class="" name="tujuan_dispo" id="tujuan_dispo">
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Disposisi dari</label>
                 <div class="col-sm-6">
                   <input type="text" class="form-control"  value="<? echo ($nm_pendisposisi); ?>" readonly>
@@ -144,28 +137,57 @@
                   </select>
                 </div>
               </div>
-               <div class="form-group row mb-3">
+              <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Catatan disposisi masuk</label>
                 <div class="col-sm-6">
                   <textarea readonly class="form-control" rows="6" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $catatan_dispo; ?></textarea>
                 </div>
               </div>
-              <div class="form-group row mb-3">
-                <div id="form_err_msg" class="col-sm-6 alert alert-danger" style="<? echo $errors == NULL ? "display:none" : "" ?>">
-                  <?
-                    if(isset($errors)){
-                      //$errors = $errors['errors'];
-                      foreach ($errors as $error):
-                        echo '<li>'.esc($error).'</li>';
-                      endforeach;
-                    }
-                  ?>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-2">
-                  <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+              <div class="row">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Disposisikan Surat</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label">Disposisi kepada</label>
+                      <div class="col-sm-6">
+                        <select  class="" name="tujuan_dispo" id="tujuan_dispo">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label">Disposisi surat</label>
+                      <div class="col-sm-6">
+                        <select class="" name="dispo_turun" id="dispo_turun">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label">Catatan disposisi</label>
+                      <div class="col-sm-6">
+                        <textarea class="form-control" rows="6" name="catatan_dispo_turun" id="catatan_dispo_turun" placeholder="Catatan disposisi"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <div id="form_err_msg" class="col-sm-6 alert alert-danger" style="<? echo $errors == NULL ? "display:none" : "" ?>">
+                        <?
+                          if(isset($errors)){
+                            //$errors = $errors['errors'];
+                            foreach ($errors as $error):
+                              echo '<li>'.esc($error).'</li>';
+                            endforeach;
+                          }
+                        ?>
+                      </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                      <label class="col-sm-2 col-form-label"></label>
+                      <div class="col-sm-2">
+                        <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <? echo form_close();?>
