@@ -147,6 +147,15 @@ class C_mail extends BaseController
 		}
 	}
 
+	public function set_dispo_status(){
+		//request parameter : [id_disposisi][status]
+		if($this->m_surat->set_dispo_status($this->request->getPost())){
+			$unread = $this->m_surat->cek_unread();
+			$this->session->set('inbox_count', $unread);
+			return json_encode($unread);
+		}
+	}
+
 	public function lihat_surat(){
 		$path_surat = base_url("writable/uploads/".$this->request->getGet('path'));
 		$data = array(

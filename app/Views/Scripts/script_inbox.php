@@ -32,11 +32,15 @@
             jenis_dokumen = 'DISPOSISI ' + data;
             if (row['status_disposisi'] == '1' ){
               txt_output = "<b>" + jenis_dokumen + "</b>";
+            } else {
+              txt_output = jenis_dokumen;
             }
           } else {
             jenis_dokumen = data;
             if(row['status_dokumen'] == '1'){
               txt_output = "<b>" + jenis_dokumen + "</b>";
+            } else {
+              txt_output = jenis_dokumen;
             }
           }
           //-------------------------
@@ -87,12 +91,12 @@
         }
       },
       {
-        data: "tgl_diterima",
+        data: "",
         render: function(data, type, row, meta){
-          if(row['id_disposisi'] !== null){
-            return row['tgl_kirim_disposisi'];
+          if(typeof row['id_disposisi'] === 'undefined'){
+            return row['tgl_diterima'];
           } else {
-            return data;
+            return row['tgl_kirim_disposisi'];
           }
         }
       }

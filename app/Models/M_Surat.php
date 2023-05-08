@@ -210,6 +210,7 @@ class M_Surat extends Model{
   public function tambah_disposisi($request){
     $this->db->transBegin();
     $id_surat = 0;
+    $id_disposisi = null;
     foreach($request as $key => $itemReq){
       $query_dispo = "insert into tbl_kantor_disposisi (id_surat, id_pegawai, id_pegawai_tujuan, status_disposisi, disposisi_surat, catatan_disposisi) values(:id_surat:, :id_pegawai:, :id_pegawai_tujuan:, :status_disposisi:, :disposisi_surat:, :catatan_disposisi:)";
       $entri_dispo = array(
@@ -221,6 +222,11 @@ class M_Surat extends Model{
         "catatan_disposisi" => $itemReq->catatan_dispo
       );
       $id_surat = $itemReq->id_surat;
+      //---- KALAU BERUPA DISPOSISI, AMBIL ID DISPOSISINYA ---//
+      if(isset($itemReq->id_disposisi)){
+        $id_disposisi = $itemReq->id_disposisi;
+      }
+      //--------------------------------------------------------
       $this->db->query($query_dispo, $entri_dispo);
     }   
     if ($this->db->transStatus() === false){
@@ -229,11 +235,19 @@ class M_Surat extends Model{
     } else {
       $this->db->transCommit();
       session()->setFlashdata('entri_msg', 'Entri sukses');
-      $status_dispo = array(
-        "id_surat" => $id_surat,
-        "status" => 3
-      );
-      $this->set_mail_status($status_dispo);
+      if(is_null($id_disposisi)){
+        $status_dispo = array(
+          "id_surat" => $id_surat,
+          "status" => 3
+        );
+        $this->set_mail_status($status_dispo);
+      } else {
+        $status_dispo = array(
+          "id_disposisi" => $id_disposisi,
+          "status" => 3
+        );
+        $this->set_dispo_status($status_dispo);
+      }
       return "SUCCESS";
     }
   }
@@ -241,6 +255,12 @@ class M_Surat extends Model{
   public function set_mail_status($request){
     //parameter : [id_surat][status]
     $status_query = "update tbl_kantor_dokumen_masuk set status_dokumen = :status: where id_surat = :id_surat:";
+    return ($this->db->query($status_query, $request));
+  }
+
+  public function set_dispo_status($request){
+    //parameter : [id_disposisi][status]
+    $status_query = "update tbl_kantor_disposisi set status_disposisi = :status: where id_disposisi = :id_disposisi:";
     return ($this->db->query($status_query, $request));
   }
 

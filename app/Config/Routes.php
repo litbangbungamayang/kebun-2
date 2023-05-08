@@ -47,6 +47,8 @@ $routes->post('dispo_baru', 'C_mail::dispo_baru');
 $routes->get('dispo_baru', 'C_mail::dispo_baru');
 $routes->post('set_status_surat', 'C_mail::set_mail_status');
 $routes->get('set_status_surat', 'C_mail::set_mail_status');
+$routes->post('set_status_disposisi', 'C_mail::set_dispo_status');
+$routes->get('set_status_disposisi', 'C_mail::set_dispo_status');
 $routes->get('cek_inbox', 'C_mail::cek_inbox');
 $routes->get('cek_inbox/jml', 'C_mail::cek_jml_inbox');
 $routes->get('cek_disposisi', 'C_mail::cek_disposisi');

@@ -21,33 +21,29 @@
   var $cbxDispoTurun, cbxDispoTurun;
   var $inputSubmitFlag = $("#status_submit");
   var $btnSubmit = $("#btnSubmit");
-  var $catatanDispo = $("#catatan_dispo");
+  var $catatanDispo = $("#catatan_dispo_turun");
   var $formDispo = $("#form_dispo");
   var $formErrMsg = $("#form_err_msg");
   var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
-  var valJenisDokumen = $("#val_jenis_dokumen");
-  var valAsalDokumen = $("#val_asal_dokumen");
-  var valSubAsalDokumen = $("#val_sub_asal_dokumen");
-  var valArrTujuanDispo = $("#arr_tujuan_dispo");
   var valResultDispoSurat = $("#res_dispo_surat");
   var btnViewSurat = $("#btn_view_surat");
 
   
   function defaultLoad(){
     //set status surat menjadi process saat berhasil di-buka
-    setMailStatus();
+    setDispoStatus();
     loadDataSurat();
   }
   
-  function setMailStatus(){
-    var status_dokumen = $("#status_dokumen");
-    if(status_dokumen.val() === "1"){
+  function setDispoStatus(){
+    var status_disposisi = $("#status_disposisi");
+    if(status_disposisi.val() === "1"){
       $.ajax({
-        url: js_base_url + "set_status_surat",
+        url: js_base_url + "set_status_disposisi",
         type: 'post',
         dataType: 'json',
         data: {
-          id_surat: $("#id_surat").val(),
+          id_disposisi: $("#id_disposisi").val(),
           status: 2
         },
         success: function(msg){
@@ -60,9 +56,10 @@
   $btnSubmit.on("click", function (evt){
     evt.preventDefault();
     var valTujuanDispo = $cbxTujuanDispo.val();
-    var valDispo = $cbxDispoSurat.val();
+    var valDispo = $cbxDispoTurun.val();
     var valCatatanDispo = $catatanDispo.val();
     var idSurat = $("#id_surat").val();
+    var idDisposisi = $("#id_disposisi").val();
     var arrSubmitDispo = new Array();
     var errMsg = "";
     if(valTujuanDispo.length < 1 || valDispo.length < 1){
@@ -80,7 +77,8 @@
           id_surat: idSurat,
           tujuan_dispo: item,
           dispo: JSON.stringify(valDispo),
-          catatan_dispo: valCatatanDispo
+          catatan_dispo: valCatatanDispo,
+          id_disposisi: idDisposisi
         }
         arrSubmitDispo.push(dispo);
       })
@@ -102,8 +100,8 @@
 
   
   function loadDataSurat(){
-    console.log(JSON.parse(valArrTujuanDispo.val()));
-    console.log(valResultDispoSurat.val());
+    //console.log(JSON.parse(valArrTujuanDispo.val()));
+    //console.log(valResultDispoSurat.val());
   }
 
   $.ajax({
@@ -162,7 +160,6 @@
         options: response
       })
       cbxDispoTurun = $cbxDispoTurun[0].selectize;
-      cbxDispoTurun.setValue(JSON.parse(valResultDispoSurat.val()));
     }
   })
 

@@ -60,7 +60,8 @@
               <div hidden id="val_asal_dokumen"><?php echo $nm_asal_dokumen;?></div>
               <div hidden id="val_sub_asal_dokumen"><?php echo $nm_sub_asal_dokumen;?></div>
               <input hidden id="id_surat" name="id_surat" value=<? echo $id_surat; ?>>
-              <input hidden id="status_dokumen" name="status_dokumen" value=<? echo $status_dokumen; ?>>
+              <input hidden id="id_disposisi" name="id_disposisi" value=<? echo $id_disposisi; ?>>
+              <input hidden id="status_disposisi" name="status_disposisi" value=<? echo $status_disposisi; ?>>
               <input hidden id="arr_tujuan_dispo" value=<? echo json_encode($arr_tujuan_disposisi); ?>>
               <input hidden id="res_dispo_surat" value=<? echo $disposisi_surat; ?>>
               <!------------------>
