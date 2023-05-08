@@ -127,6 +127,17 @@ class C_mail extends BaseController
 		}
 	}
 
+	public function baca_disposisi($id_disposisi){
+		if ($this->session->has('username') == true){
+			$data['errors'] = $data['errors'];
+			$data['result_dispo'] = $this->m_surat->get_disposisi_user($id_disposisi);
+			//var_dump($data['result_dispo']);
+			return view('read_disposisi', $data);
+		} else {
+			return redirect('login');
+		}
+	}
+
 	public function set_mail_status(){
 		//request parameter : [id_surat][status]
 		if($this->m_surat->set_mail_status($this->request->getPost())){
@@ -147,7 +158,8 @@ class C_mail extends BaseController
 	public function tujuan_disposisi(){
 		$request = array(
 			"level_jabatan"=>$this->request->getGet("level_jabatan"),
-			"unit"=>$this->request->getGet("unit")
+			"unit"=>$this->request->getGet("unit"),
+			"id_divisi" => $this->request->getGet("id_divisi")
 		);
 		$list = $this->m_surat->tujuan_disposisi($request);
 		return json_encode($list);

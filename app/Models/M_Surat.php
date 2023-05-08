@@ -185,8 +185,20 @@ class M_Surat extends Model{
     return $this->db->query($sql, [$id_surat])->getResultArray();
   }
 
+  public function get_disposisi_user($id_disposisi){
+    $sql = "select dokmasuk.*, subasal.*, asal.*, dispo.*, filesurat.*, upper(concat(pegawai.nm_pegawai,' - ',jabatan.nm_jabatan)) as nm_pendisposisi from tbl_kantor_disposisi dispo
+        join tbl_kantor_dokumen_masuk dokmasuk on dispo.id_surat = dokmasuk.id_surat
+        join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = dokmasuk.id_sub_asal_dokumen
+        join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen
+        join tbl_kantor_file_surat filesurat on filesurat.id_surat = dokmasuk.id_surat
+        join tbl_kantor_pegawai pegawai on pegawai.id_pegawai = dispo.id_pegawai
+        join tbl_kantor_jabatan jabatan on jabatan.id_jabatan = pegawai.id_jabatan 
+      where dispo.id_disposisi = ?";
+    return $this->db->query($sql, [$id_disposisi])->getResultArray();
+  }
+
   public function tujuan_disposisi($request){
-    $sql = "select *, upper(concat(peg.nm_pegawai,'-',jab.nm_jabatan,' ',divisi.nm_divisi)) as label_opsi from tbl_kantor_pegawai peg join tbl_kantor_jabatan jab on peg.id_jabatan = jab.id_jabatan join tbl_sub_divisi subdiv on subdiv.id_sub_divisi = peg.id_sub_divisi join tbl_divisi divisi on divisi.id_divisi = subdiv.id_divisi join tbl_unit unit_kerja on unit_kerja.no = divisi.id_unit where jab.level_jabatan = :level_jabatan: and unit_kerja.no = :unit:";
+    $sql = "select *, upper(concat(peg.nm_pegawai,'-',jab.nm_jabatan,' ',divisi.nm_divisi)) as label_opsi from tbl_kantor_pegawai peg join tbl_kantor_jabatan jab on peg.id_jabatan = jab.id_jabatan join tbl_sub_divisi subdiv on subdiv.id_sub_divisi = peg.id_sub_divisi join tbl_divisi divisi on divisi.id_divisi = subdiv.id_divisi join tbl_unit unit_kerja on unit_kerja.no = divisi.id_unit where jab.level_jabatan = :level_jabatan: and unit_kerja.no = :unit: and divisi.id_divisi = :id_divisi:";
     return($this->db->query($sql, $request)->getResultArray());
   }
 

@@ -19,7 +19,7 @@
         <div class="row">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Detail Dokumen Masuk</h3>
+              <h3 class="card-title">Detail Disposisi Masuk</h3>
             </div>
             <div class="card-body">
               <? echo form_open("dispo_baru", 'id="form_dispo" onsubmit="return true;"'); ?>
@@ -27,24 +27,26 @@
               </div>
               <!-- HIDDEN FIELD -->
               <? 
-                $id_surat = $result_surat[0]['id_surat'];
-                $status_dokumen = $result_surat[0]['status_dokumen'];
-                $jenis_dokumen = $result_surat[0]['jenis_dokumen'];
-                $nm_asal_dokumen = $result_surat[0]['nm_asal_dokumen'];
-                $nm_sub_asal_dokumen = $result_surat[0]['nm_sub_asal_dokumen'];
-                $nomor_dokumen = $result_surat[0]['nomor_dokumen'];
-                $perihal_dokumen = $result_surat[0]['perihal_dokumen'];
-                $tgl_dokumen = $result_surat[0]['tgl_dokumen'];
-                $tgl_diterima = $result_surat[0]['tgl_diterima'];
-                $arr_tujuan_disposisi = [];
-                $result_disposisi = $disposisi[0]['disposisi_surat'];
-                $result_catatan_dispo = $disposisi[0]['catatan_disposisi'];
-                foreach($disposisi as $item_dispo){
-                  array_push($arr_tujuan_disposisi,$item_dispo['id_pegawai_tujuan']);
-                }
+                $id_surat = $result_dispo[0]['id_surat'];
+                $id_disposisi = $result_dispo[0]['id_disposisi'];
+                $status_disposisi = $result_dispo[0]['status_disposisi'];
+                $jenis_dokumen = $result_dispo[0]['jenis_dokumen'];
+                $nm_asal_dokumen = $result_dispo[0]['nm_asal_dokumen'];
+                $nm_sub_asal_dokumen = $result_dispo[0]['nm_sub_asal_dokumen'];
+                $nomor_dokumen = $result_dispo[0]['nomor_dokumen'];
+                $perihal_dokumen = $result_dispo[0]['perihal_dokumen'];
+                $tgl_dokumen = $result_dispo[0]['tgl_dokumen'];
+                $date_tglDokumen = date_create($tgl_dokumen);
+                $tgl_dokumen = date_format($date_tglDokumen, "d-M-Y");
+                $tgl_kirim_disposisi = $result_dispo[0]['tgl_kirim_disposisi'];
+                $date_tglDisposisi = date_create($tgl_kirim_disposisi);
+                $tgl_kirim_disposisi = date_format($date_tglDisposisi, "d-M-Y");
+                $nm_pendisposisi = $result_dispo[0]['nm_pendisposisi'];
+                $catatan_dispo = $result_dispo[0]['catatan_disposisi'];
+                $disposisi_surat = $result_dispo[0]['disposisi_surat'];
                 $path_surat = "";
                 $path_lampiran = [];
-                foreach($result_surat as $dokumen){
+                foreach($result_dispo as $dokumen){
                   if($dokumen['jenis'] == "surat"){
                     $path_surat = $dokumen['path_surat'];
                   } else {
@@ -60,49 +62,48 @@
               <input hidden id="id_surat" name="id_surat" value=<? echo $id_surat; ?>>
               <input hidden id="status_dokumen" name="status_dokumen" value=<? echo $status_dokumen; ?>>
               <input hidden id="arr_tujuan_dispo" value=<? echo json_encode($arr_tujuan_disposisi); ?>>
-              <input hidden id="res_dispo_surat" value=<? echo $result_disposisi; ?>>
+              <input hidden id="res_dispo_surat" value=<? echo $disposisi_surat; ?>>
               <!------------------>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Jenis Dokumen</label>
-                <div class="col-sm-4">
-                  <select disabled class="" name="jns_dokumen" id="jns_dokumen">
-                  </select>
+                <div class="col-sm-4">             
+                  <input type="text" class="form-control"  value="<? echo strtoupper($jenis_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Nomor Dokumen</label>
                 <div class="col-sm-4">
-                  <input disabled type="text" class="form-control" style="" oninput="this.value = this.value.toUpperCase()" value=<? echo $nomor_dokumen; ?> name="nomor_dokumen" id="nomor_dokumen" placeholder="Nomor dokumen">
+                  <input type="text" class="form-control"  value="<? echo ($nomor_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Perihal</label>
                 <div class="col-sm-4">
-                  <textarea disabled class="form-control" name="perihal" id="perihal" placeholder="Perihal dokumen"><? echo $perihal_dokumen; ?></textarea>
+                  <input type="text" class="form-control"  value="<? echo ($perihal_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Dari</label>
                 <div class="col-sm-4">
-                  <select disabled class="" name="asal_dokumen" id="asal_dokumen"></select>
+                  <input type="text" class="form-control"  value="<? echo ($nm_asal_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-4">
-                  <select disabled class="" name="sub_asal_dokumen" id="sub_asal_dokumen"></select>
+                  <input type="text" class="form-control"  value="<? echo ($nm_sub_asal_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Tanggal dokumen</label>
                 <div class="col-sm-2">
-                  <input disabled type="date" class="form-control" name="tgl_dokumen" id="tgl_dokumen" placeholder="Tanggal dokumen" value=<? echo $tgl_dokumen; ?>>
+                  <input type="text" class="form-control"  value="<? echo ($tgl_dokumen); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label">Tanggal diterima</label>
+                <label class="col-sm-2 col-form-label">Tanggal disposisi</label>
                 <div class="col-sm-2">
-                  <input disabled type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" placeholder="Tanggal diterima" value=<? echo $tgl_diterima; ?>>
+                  <input type="text" class="form-control"  value="<? echo ($tgl_kirim_disposisi); ?>" readonly>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -126,21 +127,27 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Disposisi kepada</label>
                 <div class="col-sm-6">
-                  <select <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="" name="tujuan_dispo" id="tujuan_dispo">
+                  <select  class="" name="tujuan_dispo" id="tujuan_dispo">
                   </select>
                 </div>
               </div>
               <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label">Disposisi</label>
+                <label class="col-sm-2 col-form-label">Disposisi dari</label>
                 <div class="col-sm-6">
-                  <select <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="" name="dispo_surat" id="dispo_surat">
+                  <input type="text" class="form-control"  value="<? echo ($nm_pendisposisi); ?>" readonly>
+                </div>
+              </div>
+              <div class="form-group row mb-3">
+                <label class="col-sm-2 col-form-label">Disposisi masuk</label>
+                <div class="col-sm-6">
+                  <select disabled class="" name="dispo_surat" id="dispo_surat">
                   </select>
                 </div>
               </div>
                <div class="form-group row mb-3">
-                <label class="col-sm-2 col-form-label">Catatan disposisi</label>
+                <label class="col-sm-2 col-form-label">Catatan disposisi masuk</label>
                 <div class="col-sm-6">
-                  <textarea <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $result_catatan_dispo; ?></textarea>
+                  <textarea readonly class="form-control" rows="6" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $catatan_dispo; ?></textarea>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -158,8 +165,7 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-2">
-                  <button <? echo (sizeof($disposisi)>0) ? "hidden" : ""; ?> type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
-                  <a href="<? echo site_url("/surat_masuk");?>" <? echo (sizeof($disposisi)>0) ? "" : "hidden"; ?> type="" id="btnKembali" class="btn btn-primary w-100">Kembali</a>
+                  <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
                 </div>
               </div>
               <? echo form_close();?>
@@ -220,6 +226,6 @@
 
 <?= $this->section('scripts'); ?>
 
-<?= $this->include('Scripts/script_read_mail'); ?>
+<?= $this->include('Scripts/script_read_disposisi'); ?>
 
 <?= $this->endSection(); ?>
