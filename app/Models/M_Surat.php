@@ -198,7 +198,11 @@ class M_Surat extends Model{
   }
 
   public function tujuan_disposisi($request){
-    $sql = "select *, upper(concat(peg.nm_pegawai,'-',jab.nm_jabatan,' ',divisi.nm_divisi)) as label_opsi from tbl_kantor_pegawai peg join tbl_kantor_jabatan jab on peg.id_jabatan = jab.id_jabatan join tbl_sub_divisi subdiv on subdiv.id_sub_divisi = peg.id_sub_divisi join tbl_divisi divisi on divisi.id_divisi = subdiv.id_divisi join tbl_unit unit_kerja on unit_kerja.no = divisi.id_unit where jab.level_jabatan = :level_jabatan: and unit_kerja.no = :unit: and divisi.id_divisi = :id_divisi:";
+    $sql = "select *, upper(concat(peg.nm_pegawai,'-',jab.nm_jabatan,' ',divisi.nm_divisi)) as label_opsi from tbl_kantor_pegawai peg join tbl_kantor_jabatan jab on peg.id_jabatan = jab.id_jabatan join tbl_sub_divisi subdiv on subdiv.id_sub_divisi = peg.id_sub_divisi join tbl_divisi divisi on divisi.id_divisi = subdiv.id_divisi join tbl_unit unit_kerja on unit_kerja.no = divisi.id_unit where jab.level_jabatan = :level_jabatan: and unit_kerja.no = :unit:";
+    $sql_ext = " and divisi.id_divisi = :id_divisi:";
+    if($request['id_divisi'] !== null){
+      $sql .= $sql_ext;
+    }
     return($this->db->query($sql, $request)->getResultArray());
   }
 

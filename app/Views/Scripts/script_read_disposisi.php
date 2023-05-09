@@ -140,7 +140,9 @@
         options: response
       })
       cbxDispoSurat = $cbxDispoSurat[0].selectize;
-      cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
+      if(valResultDispoSurat.val() !== ""){
+        cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
+      }
     }
   })
 

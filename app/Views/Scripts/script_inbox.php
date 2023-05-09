@@ -28,7 +28,7 @@
           txt_output = '';
           jenis_dokumen = '';
           //--------------- DISPOSISI
-          if (row['id_disposisi'] !== null){
+          if (typeof row['id_disposisi'] !== 'undefined'){
             jenis_dokumen = 'DISPOSISI ' + data;
             if (row['status_disposisi'] == '1' ){
               txt_output = "<b>" + jenis_dokumen + "</b>";
@@ -62,7 +62,7 @@
           icon_disposisi = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-arrow-guide' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path d='M5 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0'></path><path d='M7 19h3a2 2 0 0 0 2 -2v-8a2 2 0 0 1 2 -2h7'></path><path d='M18 4l3 3l-3 3'></path></svg>";
           icon_done = "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-file-check' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path d='M14 3v4a1 1 0 0 0 1 1h4'></path><path d='M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z'></path> <path d='M9 15l2 2l4 -4'></path></svg>";
           status_dokumen = '';
-          if(row['id_disposisi'] !== null){
+          if(typeof row['id_disposisi'] !== 'undefined'){
             switch(row['status_disposisi']){
               case '1':
                 status_dokumen = icon_unread + " Belum dibaca";

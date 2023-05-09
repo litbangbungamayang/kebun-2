@@ -72,13 +72,13 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Nomor Dokumen</label>
                 <div class="col-sm-4">
-                  <input disabled type="text" class="form-control" style="" oninput="this.value = this.value.toUpperCase()" value=<? echo $nomor_dokumen; ?> name="nomor_dokumen" id="nomor_dokumen" placeholder="Nomor dokumen">
+                  <input readonly type="text" class="form-control" style="" oninput="this.value = this.value.toUpperCase()" value=<? echo $nomor_dokumen; ?> name="nomor_dokumen" id="nomor_dokumen" placeholder="Nomor dokumen">
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Perihal</label>
                 <div class="col-sm-4">
-                  <textarea disabled class="form-control" name="perihal" id="perihal" placeholder="Perihal dokumen"><? echo $perihal_dokumen; ?></textarea>
+                  <textarea readonly class="form-control" name="perihal" id="perihal" placeholder="Perihal dokumen"><? echo $perihal_dokumen; ?></textarea>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -96,13 +96,13 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Tanggal dokumen</label>
                 <div class="col-sm-2">
-                  <input disabled type="date" class="form-control" name="tgl_dokumen" id="tgl_dokumen" placeholder="Tanggal dokumen" value=<? echo $tgl_dokumen; ?>>
+                  <input readonly type="date" class="form-control" name="tgl_dokumen" id="tgl_dokumen" placeholder="Tanggal dokumen" value=<? echo $tgl_dokumen; ?>>
                 </div>
               </div>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Tanggal diterima</label>
                 <div class="col-sm-2">
-                  <input disabled type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" placeholder="Tanggal diterima" value=<? echo $tgl_diterima; ?>>
+                  <input readonly type="date" class="form-control" name="tgl_diterima" id="tgl_diterima" placeholder="Tanggal diterima" value=<? echo $tgl_diterima; ?>>
                 </div>
               </div>
               <div class="form-group row mb-3">
@@ -140,7 +140,7 @@
                <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Catatan disposisi</label>
                 <div class="col-sm-6">
-                  <textarea <? echo (sizeof($disposisi)>0) ? "disabled" : ""; ?> class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $result_catatan_dispo; ?></textarea>
+                  <textarea <? echo (sizeof($disposisi)>0) ? "readonly" : ""; ?> class="form-control" rows="8" name="catatan_dispo" id="catatan_dispo" placeholder="Catatan disposisi"><? echo $result_catatan_dispo; ?></textarea>
                 </div>
               </div>
               <div class="form-group row mb-3">
