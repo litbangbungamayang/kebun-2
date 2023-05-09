@@ -44,6 +44,13 @@
                 $nm_pendisposisi = $result_dispo[0]['nm_pendisposisi'];
                 $catatan_dispo = $result_dispo[0]['catatan_disposisi'];
                 $disposisi_surat = $result_dispo[0]['disposisi_surat'];
+                //------- CEK KALAU SUDAH TERDISPOSISI ---------//
+                $arr_tujuan_disposisi = [];
+                $dispo_turun = $result_dispo_turun;
+                foreach($dispo_turun as $item_dispo){
+                  array_push($arr_tujuan_disposisi,$item_dispo['id_pegawai_tujuan']);
+                }
+                //----------------------------------------------//
                 $path_surat = "";
                 $path_lampiran = [];
                 foreach($result_dispo as $dokumen){
@@ -153,7 +160,7 @@
                     <div class="form-group row mb-3">
                       <label class="col-sm-2 col-form-label">Disposisi kepada</label>
                       <div class="col-sm-6">
-                        <select  class="" name="tujuan_dispo" id="tujuan_dispo">
+                        <select <? echo (sizeof($dispo_turun)>0) ? "disabled" : ""; ?> class="" name="tujuan_dispo" id="tujuan_dispo">
                         </select>
                       </div>
                     </div>

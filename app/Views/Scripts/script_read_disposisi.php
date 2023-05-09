@@ -26,6 +26,7 @@
   var $formErrMsg = $("#form_err_msg");
   var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
   var valResultDispoSurat = $("#res_dispo_surat");
+  var valArrTujuanDispo = $("#arr_tujuan_dispo");
   var btnViewSurat = $("#btn_view_surat");
 
   
@@ -121,6 +122,10 @@
         options: response
       })
       cbxTujuanDispo = $cbxTujuanDispo[0].selectize;
+      let arr_dispo = JSON.parse(valArrTujuanDispo.val());
+      if(arr_dispo.length > 0){
+        cbxTujuanDispo.setValue(arr_dispo);
+      }
     }
   })
 

@@ -131,7 +131,11 @@ class C_mail extends BaseController
 		if ($this->session->has('username') == true){
 			$data['errors'] = $data['errors'];
 			$data['result_dispo'] = $this->m_surat->get_disposisi_user($id_disposisi);
-			//var_dump($data['result_dispo']);
+			$data_dispo_turun = array(
+				"id_surat" => $data['result_dispo'][0]['id_surat'],
+				"id_pegawai" => session('id_pegawai')
+			);
+			$data['result_dispo_turun'] = $this->m_surat->get_disposisi_turun($data_dispo_turun);
 			return view('read_disposisi', $data);
 		} else {
 			return redirect('login');

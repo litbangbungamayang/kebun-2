@@ -163,7 +163,6 @@
         placeholder: 'Pilih tujuan disposisi..',
         options: response
       })
-      console.log(no_unit);
       cbxTujuanDispo = $cbxTujuanDispo[0].selectize;
       let arr_dispo = JSON.parse(valArrTujuanDispo.val());
       if(arr_dispo.length > 0){
