@@ -47,6 +47,8 @@
                 //------- CEK KALAU SUDAH TERDISPOSISI ---------//
                 $arr_tujuan_disposisi = [];
                 $dispo_turun = $result_dispo_turun;
+                $disposisi_turun = $result_dispo_turun[0]['disposisi_surat'];
+                $catatan_dispo_turun = $result_dispo_turun[0]['catatan_disposisi'];
                 foreach($dispo_turun as $item_dispo){
                   array_push($arr_tujuan_disposisi,$item_dispo['id_pegawai_tujuan']);
                 }
@@ -71,6 +73,7 @@
               <input hidden id="status_disposisi" name="status_disposisi" value=<? echo $status_disposisi; ?>>
               <input hidden id="arr_tujuan_dispo" value=<? echo json_encode($arr_tujuan_disposisi); ?>>
               <input hidden id="res_dispo_surat" value=<? echo $disposisi_surat; ?>>
+              <input hidden id="res_dispo_turun" value=<? echo $disposisi_turun; ?>>
               <!------------------>
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Jenis Dokumen</label>
@@ -167,14 +170,14 @@
                     <div class="form-group row mb-3">
                       <label class="col-sm-2 col-form-label">Disposisi surat</label>
                       <div class="col-sm-6">
-                        <select class="" name="dispo_turun" id="dispo_turun">
+                        <select <? echo (sizeof($dispo_turun)>0) ? "disabled" : ""; ?> class="" name="dispo_turun" id="dispo_turun">
                         </select>
                       </div>
                     </div>
                     <div class="form-group row mb-3">
                       <label class="col-sm-2 col-form-label">Catatan disposisi</label>
                       <div class="col-sm-6">
-                        <textarea class="form-control" rows="6" name="catatan_dispo_turun" id="catatan_dispo_turun" placeholder="Catatan disposisi"></textarea>
+                        <textarea <? echo (sizeof($dispo_turun)>0) ? "readonly" : ""; ?> class="form-control" rows="6" name="catatan_dispo_turun" id="catatan_dispo_turun" placeholder="Catatan disposisi"><? echo $catatan_dispo_turun;?></textarea>
                       </div>
                     </div>
                     <div class="form-group row mb-3">
@@ -192,7 +195,8 @@
                     <div class="form-group row mb-3">
                       <label class="col-sm-2 col-form-label"></label>
                       <div class="col-sm-2">
-                        <button type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                        <button <? echo (sizeof($dispo_turun)>0) ? "hidden" : ""; ?> type="" id="btnSubmit" class="btn btn-primary w-100">Simpan Disposisi</button>
+                        <a href="<? echo site_url("/surat_masuk");?>" <? echo (sizeof($dispo_turun)>0) ? "" : "hidden"; ?> type="" id="btnKembali" class="btn btn-primary w-100">Kembali</a>
                       </div>
                     </div>
                   </div>

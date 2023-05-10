@@ -26,6 +26,7 @@
   var $formErrMsg = $("#form_err_msg");
   var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
   var valResultDispoSurat = $("#res_dispo_surat");
+  var valResultDispoTurun = $("#res_dispo_turun");
   var valArrTujuanDispo = $("#arr_tujuan_dispo");
   var btnViewSurat = $("#btn_view_surat");
 
@@ -167,6 +168,9 @@
         options: response
       })
       cbxDispoTurun = $cbxDispoTurun[0].selectize;
+      if(valResultDispoSurat.val() !== ""){
+        cbxDispoTurun.setValue(JSON.parse(valResultDispoTurun.val()));
+      }
     }
   })
 
