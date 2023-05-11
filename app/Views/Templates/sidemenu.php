@@ -16,8 +16,11 @@
       foreach($moduleuser as $modul){
         if($modul["nm_module"] === "md_surat"){
           $role_md_surat =  json_decode($modul["role"]);
+          //echo $modul["role"];
         }
       }
+      //var_dump($moduleuser); die();
+      //echo array_search("operator", $role_md_surat);
     ?>
     <h4 id="company_name">PT Buma Cima Nusantara</h4>
     <div class="collapse navbar-collapse" id="navbar-menu">
@@ -58,7 +61,7 @@
         </li>
         <li class="nav-item" style="<? echo session('id_pegawai') != ('7002093' || '7003306') ? 'display:none' : '';?>">
           <a class="nav-link" href="<?php echo site_url('/surat_masuk');?>" >
-            <span class="nav-link-icon d-md-none d-lg-inline-block">
+            <span class="nav-link-icon d-md-echo array_search("operator", $role_md_surat)none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -70,7 +73,7 @@
             </span><span class="badge bg-red" style="" id="newmail_count"><? echo session('inbox_count'); ?></span>
           </a>
         </li>
-        <li class="nav-item" style="<? echo array_search("operator", $role_md_surat) != false ? "" : "display:none";?>">
+        <li class="nav-item" style="<? echo array_search("operator", $role_md_surat) !== false ? "" : "display:none";?>">
           <a class="nav-link" href="<?php echo site_url('/upload_surat');?>" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
