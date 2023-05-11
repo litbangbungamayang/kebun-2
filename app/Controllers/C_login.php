@@ -36,10 +36,12 @@ class C_login extends BaseController
 				return view('login');
 			} else {
 				$userdata = $this->m_user->verify($this->request);
+				$moduleuser = $this->m_user->getModuleUser($userdata['username']);
 				if($userdata === NULL){
 					$this->session->setFlashdata('msg', "Username atau password salah!");
 					return view('login');
 				} else {
+					$this->session->set("module_user", $moduleuser);
 					$this->session->set($userdata);
 					//return view('dashboard');
 					//cek total surat masuk

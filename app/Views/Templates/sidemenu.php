@@ -10,6 +10,15 @@
       </a>
     </h1>
     <div id="test1"></div>
+    <? 
+      $moduleuser = (session('module_user'));
+      $role_md_surat = [];
+      foreach($moduleuser as $modul){
+        if($modul["nm_module"] === "md_surat"){
+          $role_md_surat =  json_decode($modul["role"]);
+        }
+      }
+    ?>
     <h4 id="company_name">PT Buma Cima Nusantara</h4>
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="navbar-nav pt-lg-3">
@@ -61,7 +70,7 @@
             </span><span class="badge bg-red" style="" id="newmail_count"><? echo session('inbox_count'); ?></span>
           </a>
         </li>
-        <li class="nav-item" style="<? echo session('id_pegawai') != '7002093' ? 'display:none' : '';?>">
+        <li class="nav-item" style="<? echo array_search("operator", $role_md_surat) != false ? "" : "display:none";?>">
           <a class="nav-link" href="<?php echo site_url('/upload_surat');?>" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">

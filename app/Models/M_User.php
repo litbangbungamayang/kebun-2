@@ -33,8 +33,16 @@ class M_User extends Model{
       join tbl_sub_divisi subdiv on peg.id_sub_divisi = subdiv.id_sub_divisi 
       join tbl_divisi divi on divi.id_divisi = subdiv.id_divisi 
       join tbl_unit unit on unit.no = divi.id_unit
-    where username = ? and password = ?';
+    where usr.username = ? and usr.password = ?';
     return $this->db->query($sql,[$uname, $hashed])->getRowArray();
+  }
+
+  public function getModuleUser($username){
+    $sql = "select roleuser.*, moduluser.* from tbl_kantor_user usr
+        join tbl_kantor_role roleuser on roleuser.username = usr.username
+        join tbl_kantor_module moduluser on moduluser.id_module = roleuser.id_module
+      where usr.username = ?";
+    return $this->db->query($sql, $username)->getResultArray();
   }
 
   public function cekPresensi($request){
