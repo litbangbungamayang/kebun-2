@@ -182,4 +182,9 @@ class C_mail extends BaseController
 		return json_encode($this->m_surat->list_disposisi());
 	}
 
+	public function postSubAsalDokumen(){
+		//var_dump($this->request->getVar()); die();
+		return json_encode($this->m_surat->post_sub_asal_dokumen($this->request->getVar()));
+	}
+
 }

@@ -12,6 +12,7 @@
   var $cbxJenisDokumen, cbxJenisDokumen;
   var $cbxTujuanDokumen, cbxTujuanDokumen;
   var dpTglDokumen = $("#tgl_dokumen");
+  var idAsalDokumen;
   
   function defaultLoad(){
     
@@ -41,8 +42,39 @@
     sortField: "id_sub_asal",
     searchField: "nm_sub_asal_dokumen",
     maxItems: 1,
-    create: false,
-    placeholder: "Sub bagian/instansi"
+    create: true,
+    placeholder: "Sub bagian/instansi",
+    create: function(input, callback){
+      $.ajax({
+        url: js_base_url + 'C_mail/postSubAsalDokumen',
+        type: 'POST',
+        data: {
+          'nm_sub_asal_dokumen' : input.toUpperCase(),
+          'id_asal_dokumen' : idAsalDokumen
+          },
+        dataType : 'json',
+        success: function(res){
+          if (!isNaN(res)){
+            callback({value: res, text: input.toUpperCase()});
+            $.ajax({
+              url: js_base_url + 'C_mail/getSubAsalDokumen',
+              type: 'GET',
+              dataType: 'json',
+              data: 'id_asal=' + idAsalDokumen,
+              success: function(response){
+                cbxSubAsalDokumen.load(function (callback){
+                  callback(response);
+                })
+              }
+            })
+            //return {value: res, text: input.toUpperCase()};
+            //alert("Loaded!");
+            //cbxSubAsalDokumen.setValue(res);
+          }
+        }
+      })
+    },
+    createOnBlur: false
   })
   cbxSubAsalDokumen = $cbxSubAsalDokumen[0].selectize;
 
@@ -86,6 +118,7 @@
           cbxSubAsalDokumen.disable();
           cbxSubAsalDokumen.clear();
           cbxSubAsalDokumen.clearOptions();
+          idAsalDokumen = value;
           $.ajax({
             url: js_base_url + 'C_mail/getSubAsalDokumen',
             type: 'GET',
@@ -97,6 +130,28 @@
               cbxSubAsalDokumen.load(function (callback){
                 callback(response);
               })
+              /*
+              cbxSubAsalDokumen.on('change', function(){
+                //console.log(cbxSubAsalDokumen.getValue());
+                if(isNaN(cbxSubAsalDokumen.getValue())){
+                  dataBaru = cbxSubAsalDokumen.getValue();
+                  dataBaru = dataBaru.toUpperCase();
+                  $.ajax({
+                    url: js_base_url + 'C_mail/postSubAsalDokumen',
+                    type: 'POST',
+                    data: {
+                      'nm_sub_asal_dokumen' : dataBaru,
+                      'id_asal_dokumen' : value
+                      },
+                    dataType : 'json',
+                    success: function(msg){
+                      cbxSubAsalDokumen.addOption({value: msg, text: dataBaru.toUpperCase()});
+                      cbxSubAsalDokumen.addItem(msg);
+                    }
+                  })
+                }
+              })
+              */
             }
           })
         }

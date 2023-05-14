@@ -94,7 +94,7 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-4">
-                  <select class="" name="sub_asal_dokumen" id="sub_asal_dokumen"></select>
+                  <select class="" oninput="this.value = this.value.toUpperCase()" name="sub_asal_dokumen" id="sub_asal_dokumen"></select>
                 </div>
               </div>
               <div class="form-group row mb-3">

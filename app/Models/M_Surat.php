@@ -280,4 +280,10 @@ class M_Surat extends Model{
     return ($this->db->query($status_query, $request));
   }
 
+  public function post_sub_asal_dokumen($request){
+    $sql = "insert into tbl_kantor_sub_asal_dokumen (id_asal_dokumen, nm_sub_asal_dokumen) values(:id_asal_dokumen:, :nm_sub_asal_dokumen:)";
+    ($this->db->query($sql, $request));
+    return $this->db->insertID();
+  }
+
 }
