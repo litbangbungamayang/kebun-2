@@ -32,7 +32,7 @@
                 $jenis_dokumen = $result_surat[0]['jenis_dokumen'];
                 $nm_asal_dokumen = $result_surat[0]['nm_asal_dokumen'];
                 $nm_sub_asal_dokumen = $result_surat[0]['nm_sub_asal_dokumen'];
-                $nomor_dokumen = $result_surat[0]['nomor_dokumen'];
+                $nomor_dokumen = (string)$result_surat[0]['nomor_dokumen'];
                 $perihal_dokumen = $result_surat[0]['perihal_dokumen'];
                 $tgl_dokumen = $result_surat[0]['tgl_dokumen'];
                 $tgl_diterima = $result_surat[0]['tgl_diterima'];
@@ -72,7 +72,7 @@
               <div class="form-group row mb-3">
                 <label class="col-sm-2 col-form-label">Nomor Dokumen</label>
                 <div class="col-sm-4">
-                  <input readonly type="text" class="form-control" style="" oninput="this.value = this.value.toUpperCase()" value=<? echo $nomor_dokumen; ?> name="nomor_dokumen" id="nomor_dokumen" placeholder="Nomor dokumen">
+                  <input readonly type="text" class="form-control" style="" value="<? echo "".$nomor_dokumen.""; ?>" name="nomor_dokumen" id="nomor_dokumen" placeholder="Nomor dokumen">
                 </div>
               </div>
               <div class="form-group row mb-3">
