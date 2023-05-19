@@ -16,11 +16,8 @@
       foreach($moduleuser as $modul){
         if($modul["nm_module"] === "md_surat"){
           $role_md_surat =  json_decode($modul["role"]);
-          //echo $modul["role"];
         }
       }
-      //var_dump($moduleuser); die();
-      //echo array_search("operator", $role_md_surat);
     ?>
     <h4 id="company_name">PT Buma Cima Nusantara</h4>
     <div class="collapse navbar-collapse" id="navbar-menu">
@@ -61,7 +58,7 @@
         </li>
         <li class="nav-item" style="<? echo session('id_pegawai') != ('7002093' || '7003306') ? 'display:none' : '';?>">
           <a class="nav-link" href="<?php echo site_url('/surat_masuk');?>" >
-            <span class="nav-link-icon d-md-echo array_search("operator", $role_md_surat)none d-lg-inline-block">
+            <span class="nav-link-icon d-md-echo none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -76,7 +73,7 @@
         <li class="nav-item" style="<? echo array_search("operator", $role_md_surat) !== false ? "" : "display:none";?>">
           <a class="nav-link" href="<?php echo site_url('/upload_surat');?>" >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="10" y1="14" x2="21" y2="3" />
                 <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5" />
@@ -84,6 +81,24 @@
             </span>
             <span class="nav-link-title">
               Upload Surat
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" style="<? echo array_search("operator", $role_md_surat) !== false ? "" : "display:none";?>">
+          <a class="nav-link" href="<?php echo site_url('/daftar_surat_masuk');?>" >
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 6l11 0"></path>
+                <path d="M9 12l11 0"></path>
+                <path d="M9 18l11 0"></path>
+                <path d="M5 6l0 .01"></path>
+                <path d="M5 12l0 .01"></path>
+                <path d="M5 18l0 .01"></path>
+              </svg>
+            </span>
+            <span class="nav-link-title">
+              Daftar Surat Masuk
             </span>
           </a>
         </li>

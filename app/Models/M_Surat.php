@@ -143,6 +143,16 @@ class M_Surat extends Model{
     return $this->db->query($sql, array($id_pegawai))->getResultArray();
   }
 
+  public function cek_inbox_dir(){
+    $sql = "select * from tbl_kantor_dokumen_masuk smasuk 
+      join tbl_kantor_sub_asal_dokumen subasal on subasal.id_sub_asal = smasuk.id_sub_asal_dokumen 
+      join tbl_kantor_asal_dokumen asal on asal.id_asal_dokumen = subasal.id_asal_dokumen
+      join tbl_kantor_pegawai peg on peg.id_pegawai = smasuk.tujuan_dokumen
+      join tbl_kantor_jabatan jab on jab.id_jabatan = peg.id_jabatan 
+      where jab.nm_jabatan = ? order by smasuk.status_dokumen asc, smasuk.tgl_diterima asc";
+    return $this->db->query($sql, array("Direktur"))->getResultArray();
+  }
+
   public function cek_disposisi(){
     $id_pegawai = session('id_pegawai');
     $sql = "select * from tbl_kantor_disposisi dispo

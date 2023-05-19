@@ -107,6 +107,11 @@ class C_mail extends BaseController
 		return json_encode($list);
 	}
 
+	public function cek_inbox_dir(){
+		$list = $this->m_surat->cek_inbox_dir();
+		return json_encode($list);
+	}
+
 	public function cek_disposisi(){
 		$list = $this->m_surat->cek_disposisi();
 		return json_encode($this->m_surat->cek_disposisi());

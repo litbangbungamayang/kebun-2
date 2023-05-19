@@ -29,6 +29,14 @@ class C_user extends BaseController
 		}
 	}
 
+	public function inbox_list(){
+		if ($this->session->has('username') == true){
+			return view('inbox_list');
+		} else {
+			return redirect('login');
+		}
+	}
+
 	public function upload_mail(){
 		if ($this->session->has('username') == true){
 			return view('upload_mail');
