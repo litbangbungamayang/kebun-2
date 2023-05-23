@@ -24,7 +24,16 @@
   var $catatanDispo = $("#catatan_dispo_turun");
   var $formDispo = $("#form_dispo");
   var $formErrMsg = $("#form_err_msg");
-  var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
+  //var lv_tujuan = ((lv_jabatan == "BOD-1") ? "BOD-2" : "BOD-3");
+  var lv_tujuan = "";
+  switch(lv_jabatan) {
+    case "BOD-1":
+      lv_jabatan = "BOD-2";
+      break;
+    case "BOD-2":
+      lv_jabatan = "BOD-3";
+      break;
+  }
   var valResultDispoSurat = $("#res_dispo_surat");
   var valResultDispoTurun = $("#res_dispo_turun");
   var valArrTujuanDispo = $("#arr_tujuan_dispo");
