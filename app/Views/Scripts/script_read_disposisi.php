@@ -28,10 +28,10 @@
   var lv_tujuan = "";
   switch(lv_jabatan) {
     case "BOD-1":
-      lv_jabatan = "BOD-2";
+      lv_tujuan = "BOD-2";
       break;
     case "BOD-2":
-      lv_jabatan = "BOD-3";
+      lv_tujuan = "BOD-3";
       break;
   }
   var valResultDispoSurat = $("#res_dispo_surat");
@@ -155,9 +155,15 @@
         options: response
       })
       cbxDispoSurat = $cbxDispoSurat[0].selectize;
+      let arr_dispo = JSON.parse(valArrTujuanDispo.val());
+      if(arr_dispo.length > 0){
+        cbxTujuanDispo.setValue(arr_dispo);
+      }
+      /*
       if(valResultDispoSurat.val() !== ""){
         cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
       }
+      */
     }
   })
 
