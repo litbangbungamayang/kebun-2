@@ -39,11 +39,11 @@ class C_mail extends BaseController
 				'label' => 'File surat',
 				'rules' => [
 					'uploaded[file_surat]',
-					'max_size[file_surat,10240]',
+					'max_size[file_surat,102400]',
 					'mime_in[file_surat,application/pdf]'
 				],
 				'errors' => [
-					'max_size' => 'Ukuran file melebihi batas yang diperbolehkan (Maks. 10 MB)',
+					'max_size' => 'Ukuran file melebihi batas yang diperbolehkan (Maks. 100 MB)',
 					'mime_in' => 'Jenis file surat tidak valid!',
 					'uploaded' => 'File dokumen harus ada!'
 				]
@@ -51,11 +51,11 @@ class C_mail extends BaseController
 			'file_lampiran' => [
 				'label' => 'File lampiran',
 				'rules' => [
-					'max_size[file_lampiran,10240]',
+					'max_size[file_lampiran,102400]',
 					'mime_in[file_lampiran,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document]'
 				],
 				'errors' => [
-					'max_size' => 'Ukuran file melebihi batas yang diperbolehkan (Maks. 10 MB)',
+					'max_size' => 'Ukuran file melebihi batas yang diperbolehkan (Maks. 100 MB)',
 					'mime_in' => 'Jenis file tidak valid!'
 				]
 			],

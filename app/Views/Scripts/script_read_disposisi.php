@@ -155,15 +155,13 @@
         options: response
       })
       cbxDispoSurat = $cbxDispoSurat[0].selectize;
-      let arr_dispo = JSON.parse(valArrTujuanDispo.val());
-      if(arr_dispo.length > 0){
-        cbxTujuanDispo.setValue(arr_dispo);
+      let arr_tujuan_dispo = JSON.parse(valArrTujuanDispo.val());
+      let arr_dispo = JSON.parse(valResultDispoSurat.val());
+      if(arr_tujuan_dispo.length > 0){
+        cbxTujuanDispo.setValue(arr_tujuan_dispo);
+        cbxDispoSurat.setValue(arr_dispo);
       }
-      /*
-      if(valResultDispoSurat.val() !== ""){
-        cbxDispoSurat.setValue(JSON.parse(valResultDispoSurat.val()));
-      }
-      */
+      
     }
   })
 
