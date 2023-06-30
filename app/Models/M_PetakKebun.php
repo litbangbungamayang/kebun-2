@@ -191,6 +191,20 @@ class M_PetakKebun extends Model{
     $query = "";
     $result = [];
     switch ($level_jabatan){
+      case "BOD-1":
+        $query = "select
+            petak.*
+          from tbl_petak petak
+            join tbl_unit unt on unt.kd_unit = petak.kode_plant
+              join tbl_divisi dvs on dvs.id_unit = unt.no
+              join tbl_sub_divisi subdiv on subdiv.id_divisi = dvs.id_divisi
+          where subdiv.id_divisi = (
+            select subdiv.id_divisi from tbl_sub_divisi subdiv
+            join tbl_kantor_pegawai peg on subdiv.id_sub_divisi = peg.id_sub_divisi
+          where peg.id_pegawai = ?
+          )";
+          $result = $this->db->query($query, array($id_pegawai))->getResultArray();
+        break;
       case "BOD-3":
         $query = "select * 
           from tbl_petak petak
