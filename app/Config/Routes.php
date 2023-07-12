@@ -64,6 +64,8 @@ $routes->add('detail/cima', 'C_detail::onfarm/cima');
 //----------------------------------------------------
 $routes->add('front', 'C_petak_kebun::front');
 $routes->add('getAllPetakByPegawai', 'C_petak_kebun::listAllPetakByPegawai');
+$routes->add('aff', 'C_petak_kebun::listPetakAff');
+$routes->add('getAllPetakAff', 'C_petak_kebun::listAllPetakAff');
 
 
 /*

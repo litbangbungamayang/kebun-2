@@ -164,7 +164,7 @@ class M_PetakKebun extends Model{
     $response = curl_exec($curl);
     $error = curl_error($curl);
     curl_close($curl);
-    return $response; // output as json encoded
+    return $response; // output already json encoded
   }
 
   function serverRequest($pg,$req){
@@ -231,6 +231,30 @@ class M_PetakKebun extends Model{
         break;
     }
     return $result;
+  }
+
+  function getPetakAff(){
+    $unit = "";
+    switch(session('kd_unit')){
+      case "SG03":
+        $unit = "buma";
+        break;
+      case "SG04":
+        $unit = "cima";
+        break;
+    }
+    
+    $listPetakAff = json_decode($this->serverRequest($unit,"kebun_getPetakAff"));
+    $affectedRows = 0;
+    if (sizeof($listPetakAff) > 0){
+      foreach ($listPetakAff as $petak){
+        $query = "update tbl_petak set aff_tebang = 1 where kode_blok = ? and aff_tebang = 0";
+        $this->db->query($query, array($petak->kode_blok));
+        $affectedRows += $this->db->affectedRows();
+      }
+    }
+    
+    return json_encode($listPetakAff);
   }
 
 }

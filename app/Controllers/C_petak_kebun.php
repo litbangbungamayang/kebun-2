@@ -26,5 +26,22 @@ class C_petak_kebun extends BaseController
 			return json_encode($this->m_petakKebun->listAllPetakByPegawai($params));
 		}
 	}
+
+	public function listAllPetakAff(){
+		if ($this->session->has('username') == true){
+			$params = array(
+				"id_pegawai" => session('id_pegawai')
+			);
+			return json_encode($this->m_petakKebun->getPetakAff());
+		}
+	}
+
+	public function listPetakAff(){
+		if ($this->session->has('username') == true){
+			return view('list_petak_aff');
+		} else {
+			return redirect('login');
+		}
+	}
 }
 ?>

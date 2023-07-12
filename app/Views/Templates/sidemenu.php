@@ -1,25 +1,16 @@
 <!-- side menu -->
-<aside class="navbar navbar-vertical navbar-expand-lg navbar-dark hide" id="navbar-to-hide">
+<aside class="navbar navbar-vertical navbar-expand-lg " id="navbar-to-hide" data-bs-theme="dark">
   <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="# navbar-menu">
+      <span class="navbar-toggler-icon">blala</span>
     </button>
+    <!-- LOGO -->
     <h1 class="navbar-brand navbar-brand-autodark">
       <a href=".">
-        <img src="<?php echo base_url('public/assets/logo-white.png');?>" width="220" height="64" alt="Tabler" class="navbar-brand-image">
+        <img src="<?php echo base_url('public/assets/logo bcn lebar.png');?>"  alt="Tabler" class="navbar-brand-image">
       </a>
     </h1>
-    <div id="test1"></div>
-    <? 
-      $moduleuser = (session('module_user'));
-      $role_md_surat = [];
-      foreach($moduleuser as $modul){
-        if($modul["nm_module"] === "md_surat"){
-          $role_md_surat =  json_decode($modul["role"]);
-        }
-      }
-    ?>
-    <h4 id="company_name">PT Buma Cima Nusantara</h4>
+    <!---------->
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="navbar-nav pt-lg-3">
         <li class="nav-item">
@@ -56,8 +47,8 @@
             </span>
           </a>
         </li>
-        <li class="nav-item" style="<? echo session('id_pegawai') != ('7002093' || '7003306') ? 'display:none' : '';?>">
-          <a class="nav-link" href="<?php echo site_url('/front');?>" >
+        <li class="nav-item-dropdown" style="">
+          <a class="nav-link dropdown-toggle" href="#navbar-base"  data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
             <span class="nav-link-icon d-md-echo none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plant" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -70,6 +61,42 @@
             <span class="nav-link-title">
               On Farm
           </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-columns">
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="<?php echo site_url('/front');?>">
+                  <span class="nav-link-icon d-md-echo none d-lg-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plant-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M2 9a10 10 0 1 0 20 0"></path>
+                      <path d="M12 19a10 10 0 0 1 10 -10"></path>
+                      <path d="M2 9a10 10 0 0 1 10 10"></path>
+                      <path d="M12 4a9.7 9.7 0 0 1 2.99 7.5"></path>
+                      <path d="M9.01 11.5a9.7 9.7 0 0 1 2.99 -7.5"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Petak Kebun
+                </a>
+              </div>
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="<?php echo site_url('/aff');?>">
+                  <span class="nav-link-icon d-md-echo none d-lg-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M15 8h.01"></path>
+                      <path d="M11.5 21h-5.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v7"></path>
+                      <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l4 4"></path>
+                      <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l.5 .5"></path>
+                      <path d="M15 19l2 2l4 -4"></path>
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    List Petak AFF
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
         <li class="nav-item" style="">
           <a class="nav-link" href="<?php echo site_url('/logout');?>" >

@@ -46,6 +46,6 @@
 
 <?= $this->section('scripts'); ?>
 
-<?= $this->include('Scripts/script_front'); ?>
+<?= $this->include('Scripts/script_list_petak'); ?>
 
 <?= $this->endSection(); ?>
