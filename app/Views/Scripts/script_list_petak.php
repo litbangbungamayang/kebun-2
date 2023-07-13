@@ -6,12 +6,6 @@
   const formatOptions = {maximumFractionDigits: 2, minimumFractionDigits: 2};
   const formatting = new Intl.NumberFormat('id-UK', formatOptions);
 
-  var data_dokumen = '';
-  var data_disposisi = '';
-
-
-  
-
   var tbl = $("#tbl_petak").DataTable({
     'select' : 'single',
     'data': '',
@@ -22,35 +16,15 @@
       {
         data:"",
         render: function(data, type, row, meta){
-          /*
-          status_dokumen = '';
-          if(typeof row['id_disposisi'] !== 'undefined'){
-            switch(row['status_disposisi']){
-              case '1':
-                status_dokumen = icon_unread + " Belum dibaca";
-                break;
-              case '2':
-                status_dokumen = icon_read + " Sudah dibaca";
-                break;
-              case '3':
-                status_dokumen = icon_disposisi + " Sudah terdisposisi";
-                break;
-            }
-          } else {
-            switch(row['status_dokumen']){
-              case '1':
-                status_dokumen = icon_unread + " Belum dibaca";
-                break;
-              case '2':
-                status_dokumen = icon_read + " Sudah dibaca";
-                break;
-              case '3':
-                status_dokumen = icon_disposisi + " Sudah terdisposisi";
-                break;
-            }
-          }
-          */
           return row['deskripsi_blok'];
+        }
+      },
+      {
+        className:"dt-body-right",
+        data:"",
+        render: function(data, type, row, meta){
+          $luas = parseFloat(row['luas_tanam']);
+          return formatting.format($luas);
         }
       },
       {

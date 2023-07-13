@@ -29,6 +29,7 @@
                       <!-- <th class="text-center" style="width: 25px;">#</th> -->
                       <th style="width: 20%;">Kode Petak</th>
                       <th>Deskripsi</th>
+                      <th style="width: 10%;">Luas Tanam (ha)</th>
                       <th style="width: 10%;">KTG</th>
                     </tr>
                   </thead>

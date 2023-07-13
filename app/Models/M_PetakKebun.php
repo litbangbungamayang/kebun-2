@@ -253,8 +253,52 @@ class M_PetakKebun extends Model{
         $affectedRows += $this->db->affectedRows();
       }
     }
-    
-    return json_encode($listPetakAff);
+    //var_dump($listPetakAff); die();
+    $level_jabatan = session('level_jabatan');
+    $id_pegawai = session('id_pegawai');
+    $query = "";
+    $result = [];
+    switch ($level_jabatan){
+      case "BOD-1":
+        $query = "select
+            petak.*
+          from tbl_petak petak
+            join tbl_unit unt on unt.kd_unit = petak.kode_plant
+              join tbl_divisi dvs on dvs.id_unit = unt.no
+              join tbl_sub_divisi subdiv on subdiv.id_divisi = dvs.id_divisi
+          where subdiv.id_divisi = (
+            select subdiv.id_divisi from tbl_sub_divisi subdiv
+            join tbl_kantor_pegawai peg on subdiv.id_sub_divisi = peg.id_sub_divisi
+          where peg.id_pegawai = ? and petak.aff_tebang = 1
+          )";
+          $result = $this->db->query($query, array($id_pegawai))->getResultArray();
+        break;
+      case "BOD-3":
+        $query = "select * 
+          from tbl_petak petak
+            join tbl_sub_divisi subdiv on subdiv.nm_sub_divisi = petak.divisi
+              join tbl_divisi dvs on dvs.id_divisi = subdiv.id_divisi
+              join tbl_unit unt on unt.no = dvs.id_unit
+              join tbl_kantor_pegawai peg on peg.id_sub_divisi = subdiv.id_sub_divisi
+          where peg.id_pegawai = ? and petak.kode_plant = unt.kd_unit and petak.aff_tebang = 1";
+          $result = $this->db->query($query, array($id_pegawai))->getResultArray();
+        break;
+      case "BOD-2":
+        $query = "select
+            petak.*
+          from tbl_petak petak
+            join tbl_unit unt on unt.kd_unit = petak.kode_plant
+              join tbl_divisi dvs on dvs.id_unit = unt.no
+              join tbl_sub_divisi subdiv on subdiv.id_divisi = dvs.id_divisi
+          where subdiv.id_divisi = (
+            select subdiv.id_divisi from tbl_sub_divisi subdiv
+            join tbl_kantor_pegawai peg on subdiv.id_sub_divisi = peg.id_sub_divisi
+          where peg.id_pegawai = ?
+          ) and petak.divisi = subdiv.nm_sub_divisi and petak.aff_tebang = 1";
+          $result = $this->db->query($query, array($id_pegawai))->getResultArray();
+        break;
+    }
+    return json_encode($result);
   }
 
 }

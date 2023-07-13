@@ -32,7 +32,7 @@ class C_petak_kebun extends BaseController
 			$params = array(
 				"id_pegawai" => session('id_pegawai')
 			);
-			return json_encode($this->m_petakKebun->getPetakAff());
+			return ($this->m_petakKebun->getPetakAff());
 		}
 	}
 
